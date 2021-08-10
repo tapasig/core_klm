@@ -6,8 +6,8 @@
 #include <g4calo/RawTowerBuilderByHitIndex.h>
 #include <g4calo/RawTowerDigitizer.h>
 
-#include <g4eiccalos/PHG4ForwardCalCellReco.h>
-#include <g4eiccalos/PHG4ForwardHcalSubsystem.h>
+// #include <g4eiccalos/PHG4ForwardCalCellReco.h>
+#include <g4eiccalos/PHG4BackwardHcalSubsystem.h>
 
 #include <g4eval/CaloEvaluator.h>
 
@@ -91,7 +91,7 @@ void EHCALSetup(PHG4Reco *g4Reco)
   Fun4AllServer *se = Fun4AllServer::instance();
 
   /** Use dedicated EHCAL module */
-  PHG4ForwardHcalSubsystem *ehcal = new PHG4ForwardHcalSubsystem("EHCAL");
+  PHG4BackwardHcalSubsystem *ehcal = new PHG4BackwardHcalSubsystem("EHCAL");
 
   ostringstream mapping_EHCAL;
 
@@ -131,6 +131,7 @@ void EHCALSetup(PHG4Reco *g4Reco)
   ehcal->SetTowerMappingFile(mapping_EHCAL.str());
   ehcal->OverlapCheck(OverlapCheck);
   ehcal->SetActive();
+  ehcal->SetDetailed(false);
   ehcal->SuperDetector("EHCAL");
   if (AbsorberActive) ehcal->SetAbsorberActive();
 
@@ -186,7 +187,7 @@ void EHCAL_Towers()
   tower_EHCAL->Detector("EHCAL");
   tower_EHCAL->set_sim_tower_node_prefix("SIM");
   tower_EHCAL->GeometryTableFile(mapping_EHCAL.str());
-
+  
   se->registerSubsystem(tower_EHCAL);
 
   // enable usage of different tower calibrations for systematic studies
@@ -301,7 +302,7 @@ void EHCAL_Towers()
     TowerCalibration->Detector("EHCAL");
     TowerCalibration->Verbosity(verbosity);
     TowerCalibration->set_calib_algorithm(RawTowerCalibration::kSimple_linear_calibration);
-    TowerCalibration->set_calib_const_GeV_ADC(1. / 0.03898);  // calibrated with muons
+    TowerCalibration->set_calib_const_GeV_ADC(1. / (0.03898*0.5));  // temporary factor 0.5 to fix calibration for new tower design
     TowerCalibration->set_pedstal_ADC(0);
     se->registerSubsystem(TowerCalibration);
   }

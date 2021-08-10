@@ -17,6 +17,7 @@
 #include <G4_Mvtx_EIC.C>
 #include <G4_RICH.C>
 #include <G4_TPC_EIC.C>
+#include <G4_BECAL.C>
 
 #include <g4eval/PHG4DSTReader.h>
 
@@ -167,6 +168,14 @@ void G4DSTreader_EICDetector(const string &outputFile = "G4sPHENIXCells.root")
         ana->AddNode("ABSORBER_FHCAL");
     }
 
+    if (Enable::BECAL)
+    {
+      ana->AddNode("BECAL");
+      if (Enable::ABSORBER || Enable::BECAL_ABSORBER)
+        ana->AddNode("ABSORBER_BECAL");
+    }
+
+
     if (Enable::FEMC)
     {
       ana->AddNode("FEMC");
@@ -219,6 +228,12 @@ void G4DSTreader_EICDetector(const string &outputFile = "G4sPHENIXCells.root")
     ana->AddTower("SIM_FHCAL");
     ana->AddTower("RAW_FHCAL");
     ana->AddTower("CALIB_FHCAL");
+  }
+  if (Enable::BECAL_TOWER)
+  {
+    ana->AddTower("SIM_BECAL");
+    ana->AddTower("RAW_BECAL");
+    ana->AddTower("CALIB_BECAL");
   }
   if (Enable::FEMC_TOWER)
   {

@@ -25,20 +25,15 @@
 # the X server. I've heard similar stories about OGLIX on other
 # machines. You might have to play with it. GEANT prints out a
 # list of available graphics systems at some point.
-#/vis/open OGLIX
-/vis/open OGL 1200x900-0+0
-/vis/viewer/set/lineSegmentsPerCircle 10
-#/vis/viewer/set/style cloud
+/vis/open OGLIX 1200x900-0+0
+#/vis/open OGLSX 1200x900-0+0
 # increase display limit for more complex detectors
 /vis/ogl/set/displayListLimit 500000
-/vis/viewer/set/viewpointThetaPhi 260 -40
+/vis/viewer/set/viewpointThetaPhi 240 -10
 /vis/viewer/addCutawayPlane 0 0 0 m 1 0 0
-/vis/viewer/addCutawayPlane 0 0 0 m 0 -1 0
-# /vis/viewer/panTo 150 0 cm
-
 # our world is 4x4 meters, the detector is about 1m across
 # zooming by 4 makes it fill the display
-/vis/viewer/zoom 1.8
+/vis/viewer/zoom 1.5
 #
 # Use this open statement instead to get a HepRep version 1 file
 # suitable for viewing in WIRED.
@@ -53,7 +48,7 @@
 #
 # Draw trajectories at end of event, showing trajectory points as
 # markers of size 2 pixels
-/vis/scene/add/trajectories smooth rich
+/vis/scene/add/trajectories smooth
 /vis/modeling/trajectories/create/drawByCharge
 /vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
 /vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
@@ -73,7 +68,7 @@
 # remove low energy stuff
 /vis/filtering/trajectories/create/attributeFilter
 /vis/filtering/trajectories/attributeFilter-0/setAttribute IMag
-/vis/filtering/trajectories/attributeFilter-0/addInterval 10 MeV 1000 GeV
+/vis/filtering/trajectories/attributeFilter-0/addInterval 2 MeV 1000 GeV
 #
 /vis/scene/endOfEventAction accumulate
 #
