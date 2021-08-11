@@ -194,7 +194,7 @@ int Fun4All_G4_CORE(
   Enable::ALLSILICON_ABSORBER = true;
   //  Enable::ALLSILICON_OVERLAPCHECK = true;
 
-  Enable::TRACKING = false;
+  Enable::TRACKING = true;
   Enable::TRACKING_EVAL = Enable::TRACKING && true;
   G4TRACKING::DISPLACED_VERTEX = false;  // this option exclude vertex in the track fitting and use RAVE to reconstruct primary and 2ndary vertexes
                                          // projections to calorimeters
