@@ -156,6 +156,8 @@ int Fun4All_G4_CORE(
   if (Input::PYTHIA6)
   {
     INPUTGENERATOR::Pythia6->set_config_file("phpythia6_ep.cfg");
+    //! apply EIC beam parameter following EIC CDR
+    Input::ApplyEICBeamParameter(INPUTGENERATOR::Pythia6);
   }
 
   // register all input generators with Fun4All
@@ -186,6 +188,16 @@ int Fun4All_G4_CORE(
 
   //  Enable::BBC = true;
   Enable::BBCFAKE = true; // Smeared vtx and t0, use if you don't want real BBC in simulation
+
+  // whether to simulate the Be section of the beam pipe
+  Enable::PIPE = false;
+  // EIC beam pipe extension beyond the Be-section:
+  G4PIPE::use_forward_pipes = false;
+  // EIC hadron far forward magnets and detectors. IP6 and IP8 are incompatible (pick either or);
+  Enable::HFARFWD_MAGNETS_IP6=true;
+  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+  Enable::HFARFWD_MAGNETS_IP8=false;
+  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
 
   //-------------------------------------
   //CORE geometry - tracking + magnet

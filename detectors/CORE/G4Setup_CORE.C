@@ -23,18 +23,15 @@
 #include <G4_User.C>
 #include <G4_World.C>
 #include <G4_TTL_EIC.C>
+#include <G4_hFarFwdBeamLine_EIC.C>
+#include <G4_Pipe_EIC.C>
 
 #include <g4detectors/PHG4CylinderSubsystem.h>
-
 #include <g4eval/PHG4DstCompressReco.h>
-
 #include <g4main/PHG4Reco.h>
 #include <g4main/PHG4TruthSubsystem.h>
-
 #include <phfield/PHFieldConfig.h>
-
 #include <g4decayer/EDecayType.hh>
-
 #include <fun4all/Fun4AllDstOutputManager.h>
 #include <fun4all/Fun4AllServer.h>
 
@@ -43,6 +40,8 @@ R__LOAD_LIBRARY(libg4detectors.so)
 
 void G4Init()
 {
+  if (Enable::PIPE) PipeInit();
+  if (Enable::HFARFWD_MAGNETS_IP6 || Enable::HFARFWD_MAGNETS_IP8) hFarFwdBeamLineInit();
   if (Enable::ALLSILICON) AllSiliconInit();
   if (Enable::TRACKING) TrackingInit();
   if (Enable::BBC) BbcInit();
