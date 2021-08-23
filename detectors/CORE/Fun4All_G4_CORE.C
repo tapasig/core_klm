@@ -115,7 +115,7 @@ int Fun4All_G4_CORE(
   // add the settings for other with [1], next with [2]...
   if (Input::SIMPLE)
   {
-    INPUTGENERATOR::SimpleEventGenerator[0]->add_particles("pi-", 5);
+    INPUTGENERATOR::SimpleEventGenerator[0]->add_particles("mu-",1);
     if (Input::HEPMC || Input::EMBED)
     {
       INPUTGENERATOR::SimpleEventGenerator[0]->set_reuse_existing_vertex(true);
@@ -127,11 +127,11 @@ int Fun4All_G4_CORE(
                                                                                 PHG4SimpleEventGenerator::Uniform,
                                                                                 PHG4SimpleEventGenerator::Uniform);
       INPUTGENERATOR::SimpleEventGenerator[0]->set_vertex_distribution_mean(0., 0., 0.);
-      INPUTGENERATOR::SimpleEventGenerator[0]->set_vertex_distribution_width(0., 0., 5.);
+      INPUTGENERATOR::SimpleEventGenerator[0]->set_vertex_distribution_width(0., 0., 0.);
     }
-    INPUTGENERATOR::SimpleEventGenerator[0]->set_eta_range(-3, 3);
+    INPUTGENERATOR::SimpleEventGenerator[0]->set_eta_range(-4.2, 4.2);
     INPUTGENERATOR::SimpleEventGenerator[0]->set_phi_range(-M_PI, M_PI);
-    INPUTGENERATOR::SimpleEventGenerator[0]->set_pt_range(0.1, 20.);
+    INPUTGENERATOR::SimpleEventGenerator[0]->set_p_range(0.,40.);
   }
   // Upsilons
   // if you run more than one of these Input::UPSILON_NUMBER > 1
@@ -162,13 +162,13 @@ int Fun4All_G4_CORE(
   InputRegister();
 
   // set up production relatedstuff
-  //   Enable::PRODUCTION = true;
+  // Enable::PRODUCTION = true;
 
   //======================
   // Write the DST
   //======================
 
-  //  Enable::DSTOUT = true;
+  // Enable::DSTOUT = true;
   DstOut::OutputDir = outdir;
   DstOut::OutputFile = outputFile;
   Enable::DSTOUT_COMPRESS = false;  // Compress DST files
@@ -197,7 +197,8 @@ int Fun4All_G4_CORE(
   Enable::TRACKING = true;
   Enable::TRACKING_EVAL = Enable::TRACKING && true;
   G4TRACKING::DISPLACED_VERTEX = false;  // this option exclude vertex in the track fitting and use RAVE to reconstruct primary and 2ndary vertexes
-                                         // projections to calorimeters
+  
+  // projections to calorimeters
   G4TRACKING::PROJECTION_CEMC = false;
   G4TRACKING::PROJECTION_FEMC = false;
   G4TRACKING::PROJECTION_FHCAL = false;
@@ -208,25 +209,25 @@ int Fun4All_G4_CORE(
   // CORE geometry - barrel
   //-------------------------------------
   Enable::CEMC = true;
-  //  Enable::CEMC_ABSORBER = true;
+  Enable::CEMC_ABSORBER = false;
   Enable::CEMC_CELL = Enable::CEMC && true;
   Enable::CEMC_TOWER = Enable::CEMC_CELL && true;
   Enable::CEMC_CLUSTER = Enable::CEMC_TOWER && true;
   Enable::CEMC_EVAL = Enable::CEMC_CLUSTER && false;
 
   //Enable::HCALIN = false;
-  //  Enable::HCALIN_ABSORBER = true;
-  Enable::HCALIN_CELL = Enable::HCALIN && true;
-  Enable::HCALIN_TOWER = Enable::HCALIN_CELL && true;
-  Enable::HCALIN_CLUSTER = Enable::HCALIN_TOWER && true;
-  Enable::HCALIN_EVAL = Enable::HCALIN_CLUSTER && true;
+  //Enable::HCALIN_ABSORBER = true;
+  //Enable::HCALIN_CELL = Enable::HCALIN && true;
+  //Enable::HCALIN_TOWER = Enable::HCALIN_CELL && true;
+  //Enable::HCALIN_CLUSTER = Enable::HCALIN_TOWER && true;
+  //Enable::HCALIN_EVAL = Enable::HCALIN_CLUSTER && true;
 
   //Enable::HCALOUT = false;
-  //  Enable::HCALOUT_ABSORBER = true;
-  Enable::HCALOUT_CELL = Enable::HCALOUT && true;
-  Enable::HCALOUT_TOWER = Enable::HCALOUT_CELL && true;
-  Enable::HCALOUT_CLUSTER = Enable::HCALOUT_TOWER && true;
-  Enable::HCALOUT_EVAL = Enable::HCALOUT_CLUSTER && true;
+  //Enable::HCALOUT_ABSORBER = true;
+  //Enable::HCALOUT_CELL = Enable::HCALOUT && true;
+  //Enable::HCALOUT_TOWER = Enable::HCALOUT_CELL && true;
+  //Enable::HCALOUT_CLUSTER = Enable::HCALOUT_TOWER && true;
+  //Enable::HCALOUT_EVAL = Enable::HCALOUT_CLUSTER && true;
 
   Enable::DIRC = true;
   Enable::CTTL = true; 
@@ -238,14 +239,14 @@ int Fun4All_G4_CORE(
   Enable::FTTL = true;
 
   Enable::FEMC = true;
-  //  Enable::FEMC_ABSORBER = true;
+  Enable::FEMC_ABSORBER = false;
   Enable::FEMC_CELL = Enable::FEMC && true;
   Enable::FEMC_TOWER = Enable::FEMC_CELL && true;
   Enable::FEMC_CLUSTER = Enable::FEMC_TOWER && true;
   Enable::FEMC_EVAL = Enable::FEMC_CLUSTER && false;
 
-  //Enable::FHCAL = false;
-  //  Enable::FHCAL_ABSORBER = true;
+  Enable::FHCAL = true;
+  Enable::FHCAL_ABSORBER = false;
   Enable::FHCAL_CELL = Enable::FHCAL && true;
   Enable::FHCAL_TOWER = Enable::FHCAL_CELL && true;
   Enable::FHCAL_CLUSTER = Enable::FHCAL_TOWER && true;

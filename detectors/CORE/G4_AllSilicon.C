@@ -32,6 +32,7 @@ void AllSiliconSetup(PHG4Reco *g4Reco)
   
   
   allsili->set_string_param("GDMPath", string(getenv("CALIBRATIONROOT")) + Form("/AllSiliconTracker/genfitGeom_AllSi_v%d.gdml",G4ALLSILICON::SETTING::geomVersion));
+  //allsili->set_string_param("GDMPath","mapping/geometry_allsi.gdml");
 
   allsili->AddAssemblyVolume("VST");       // Barrel
   allsili->AddAssemblyVolume("FST");       // Forward disks
