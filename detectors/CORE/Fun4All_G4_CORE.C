@@ -196,7 +196,7 @@ int Fun4All_G4_CORE(
   // EIC hadron far forward magnets and detectors. IP6 and IP8 are incompatible (pick either or);
   Enable::HFARFWD_MAGNETS_IP6=true;
   Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
-  Enable::HFARFWD_MAGNETS_IP8=false;
+  Enable::HFARFWD_MAGNETS_IP8=true;
   Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
 
   //-------------------------------------
