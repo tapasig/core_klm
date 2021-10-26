@@ -3,6 +3,9 @@
 
 #include <GlobalVariables.C>
 
+#include <G4_hFarFwdBeamLine_EIC.C>
+#include <G4_Pipe_EIC_simple.C>
+
 #include <G4_Aerogel.C>
 #include <G4_Barrel_EIC.C>
 #include <G4_AllSilicon.C>
@@ -32,8 +35,6 @@
 
 #include <G4_BlackHole.C>
 #include <G4_Magnet.C>
-#include <G4_hFarFwdBeamLine_EIC.C>
-#include <G4_Pipe_EIC_simple.C>
 #include <G4_PlugDoor_EIC.C>
 #include <G4_User.C>
 #include <G4_World.C>
@@ -159,7 +160,7 @@ int G4Setup(TString specialSetting = ""){
   istringstream stringline(G4MAGNET::magfield);
   stringline >> fieldstrength;
   if (stringline.fail()){  // conversion to double fails -> we have a string
-    if (G4MAGNET::magfield.find("sPHENIX.root") != string::npos){
+    if (G4MAGNET::magfield.find("sphenix3dbigmapxyz") != string::npos){
       g4Reco->set_field_map(G4MAGNET::magfield, PHFieldConfig::Field3DCartesian);
     } else {
       g4Reco->set_field_map(G4MAGNET::magfield, PHFieldConfig::kField2D);

@@ -141,7 +141,7 @@ int Fun4All_G4_FullDetectorModular(
     gen->set_name("pi-");
     // gen->set_name("pi0");
     gen->set_vtx(0, 0, 0);
-    gen->set_eta_range(-3.5, 3.5);            // around midrapidity
+    gen->set_eta_range(-4.0, 4.0);            // around midrapidity
     if(particlemomMin > -1)
       gen->set_mom_range(particlemomMin, particlemomMin);                   // fixed 4 GeV/c
     else
@@ -249,7 +249,6 @@ int Fun4All_G4_FullDetectorModular(
   //EIC hadron far forward magnets and detectors. IP6 and IP8 are incompatible (pick either or);
   Enable::HFARFWD_MAGNETS = false;
   Enable::HFARFWD_VIRTUAL_DETECTORS = false;
-
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // geometry - tracking
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -383,7 +382,7 @@ int Fun4All_G4_FullDetectorModular(
   // EICDetector geometry - 'electron' direction
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // PID detectors - RICH's
-  Enable::mRICH = true;
+  Enable::mRICH = false;
 
   Enable::EEMC  = true;
   Enable::EEMCH = false;
@@ -508,8 +507,11 @@ int Fun4All_G4_FullDetectorModular(
       // LGAD layers
       if(specialSetting.Contains("FTTL"))
         Enable::FTTL = true;
-      if(specialSetting.Contains("ETTL"))
+      if(specialSetting.Contains("ETTL")){
         Enable::ETTL = true;
+        G4DIRC::SETTING::USECEMCGeo   = false;
+        G4TTL::SETTING::optionCEMC    = false;
+      }
       if(specialSetting.Contains("CTTL")){
         Enable::CTTL = true;
         // Enable::DIRC = true;
@@ -578,6 +580,10 @@ int Fun4All_G4_FullDetectorModular(
   Enable::BECAL_CLUSTER = Enable::BECAL_TOWER && true;
   Enable::BECAL_EVAL    = Enable::BECAL_CLUSTER && false;
   
+
+  Enable::FTTL_CLUSTER = Enable::FTTL && true;
+  Enable::ETTL_CLUSTER = Enable::ETTL && true;
+
   // Other options
   Enable::GLOBAL_RECO = true;
   Enable::GLOBAL_FASTSIM = true;
@@ -618,7 +624,14 @@ int Fun4All_G4_FullDetectorModular(
     G4MAGNET::magfield = magfield;
     //  G4MAGNET::magfield = string(getenv("CALIBRATIONROOT")) + string("/Field/Map/sPHENIX.2d.root");  // default map from the calibration database
   } else {
-    G4MAGNET::magfield_rescale = -1.4 / 1.5;  // make consistent with expected Babar field strength of 1.4T
+    if (G4MAGNET::magfield.find("sphenix3dbigmapxyz") != string::npos)
+    {
+      G4MAGNET::magfield_rescale = 1.;  // 3d fieldmap uses 1.4T
+    }
+    else
+    {
+      G4MAGNET::magfield_rescale = -1.4 / 1.5;  // make consistent with expected Babar field strength of 1.4T
+    }
   }
   //---------------
   // Pythia Decayer
@@ -692,6 +705,9 @@ int Fun4All_G4_FullDetectorModular(
 
   if (Enable::BECAL_TOWER) BECAL_Towers();
   if (Enable::BECAL_CLUSTER) BECAL_Clusters();
+
+  if (Enable::FTTL_CLUSTER) FTTL_Clustering();
+  if (Enable::ETTL_CLUSTER) ETTL_Clustering();
   
   if (Enable::DSTOUT_COMPRESS) ShowerCompress();
 
@@ -799,11 +815,13 @@ int Fun4All_G4_FullDetectorModular(
   // Event processing
   //-----------------
   if (Enable::DISPLAY){
-    DisplayOn();
-    // gROOT->ProcessLine("PHG4Reco *g4 = QTGui();"); // alternative to DisplayOn
-    gROOT->ProcessLine("Fun4AllServer *se = Fun4AllServer::instance();");
-    gROOT->ProcessLine("PHG4Reco *g4 = (PHG4Reco *) se->getSubsysReco(\"PHG4RECO\");");
-
+    if (specialSetting.Contains("viewer")){
+      gROOT->ProcessLine("PHG4Reco *g4 = QTGui();"); // alternative to DisplayOn
+    } else {
+      DisplayOn();
+      gROOT->ProcessLine("Fun4AllServer *se = Fun4AllServer::instance();");
+      gROOT->ProcessLine("PHG4Reco *g4 = (PHG4Reco *) se->getSubsysReco(\"PHG4RECO\");");
+    }
     cout << "-------------------------------------------------" << endl;
     cout << "You are in event display mode. Run one event with" << endl;
     cout << "se->run(1)" << endl;
@@ -941,7 +959,7 @@ void ParseTString(TString &specialSetting)
   {
     G4DRCALO::SETTING::FwdConfig = Enable::DRCALO && true;
     G4FHCAL::SETTING::wDR = Enable::FHCAL && true;
-    G4LFHCAL::SETTING::wDR = Enable::LFHCAL && true;
+    G4LFHCAL::SETTING::FwdConfig = Enable::LFHCAL && true;
     G4FEMC::SETTING::wDR = Enable::FEMC && true;
     G4TTL::SETTING::optionDR = 1;
   }
@@ -1032,6 +1050,10 @@ void ParseTString(TString &specialSetting)
   else if (specialSetting.Contains("TTLF"))
     G4TTL::SETTING::optionGeo    = 4;
 
+  if (specialSetting.Contains("LYSO")){
+    G4TTL::SETTING::optionLYSO    = true;
+    G4TTL::SETTING::optionBasicGeo    = true;
+  }
   if (specialSetting.Contains("TTLBasicGeo")){
     G4TTL::SETTING::optionBasicGeo    = true;
   } else {
@@ -1046,6 +1068,16 @@ void ParseTString(TString &specialSetting)
   
   if (specialSetting.Contains("ALLSILICONV3"))
     G4ALLSILICON::SETTING::geomVersion = 3;
+  
+  
+  if (specialSetting.Contains("OIRC"))
+    G4DIRC::SETTING::NEWDIRC = false;
+  
+  
+  if (specialSetting.Contains("FWDDETS")){
+    Enable::HFARFWD_MAGNETS = true;
+    Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+  }
   
 }
 

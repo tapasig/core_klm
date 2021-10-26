@@ -3,6 +3,8 @@
 
 #include <GlobalVariables.C>
 
+#include <G4_hFarFwdBeamLine_EIC.C>
+
 #include <g4calo/RawTowerBuilderByHitIndex.h>
 #include <g4calo/RawTowerDigitizer.h>
 
@@ -18,6 +20,8 @@
 #include <caloreco/RawTowerCalibration.h>
 
 #include <fun4all/Fun4AllServer.h>
+
+#include <algorithm>
 
 R__LOAD_LIBRARY(libcalo_reco.so)
 R__LOAD_LIBRARY(libg4calo.so)
@@ -74,7 +78,7 @@ void FEMCInit()
 
   BlackHoleGeometry::max_radius = std::max(BlackHoleGeometry::max_radius, G4FEMC::outer_radius);
   BlackHoleGeometry::max_z = std::max(BlackHoleGeometry::max_z, G4FEMC::Gz0 + G4FEMC::Gdz / 2.);
-  BlackHoleGeometry::min_z = std::min(BlackHoleGeometry::min_z, -10*cm);
+  BlackHoleGeometry::min_z = std::min(BlackHoleGeometry::min_z, -10.);
 }
 
 void FEMCSetup(PHG4Reco *g4Reco)
@@ -107,18 +111,40 @@ void FEMCSetup(PHG4Reco *g4Reco)
   // asymmetric ECAL around beampipe
   else if (G4FEMC::SETTING::asymmetric)
   {
-    if (G4FEMC::SETTING::readoutsplit)
-      mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_asymmetric_ROS.txt";
+    if (Enable::IP6)
+    {
+      if (G4FEMC::SETTING::readoutsplit)
+      {
+        mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_IP6-asymmetric_ROS.txt";
+      }
+      else
+      {
+        mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_IP6-asymmetric.txt";
+      }
+    }
     else
-      mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_asymmetric.txt";
+    {
+      if (G4FEMC::SETTING::readoutsplit)
+      {
+        mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_asymmetric_ROS.txt";
+      }
+      else
+      {
+        mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_asymmetric.txt";
+      }
+    }
   }
   // ECAL surrounding dual readout calorimeter
   else if (G4FEMC::SETTING::FwdSquare)
   {
     if (G4FEMC::SETTING::readoutsplit)
+    {
       mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_FwdSquare_ROS.txt";
+    }
     else
+    {
       mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_FwdSquare.txt";
+    }
   }
   // ECAL surrounding dual readout calorimeter
   else if (G4FEMC::SETTING::wDR)
@@ -186,18 +212,40 @@ void FEMC_Towers()
   // asymmetric ECAL around beampipe
   else if (G4FEMC::SETTING::asymmetric)
   {
-    if (G4FEMC::SETTING::readoutsplit)
-      mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_asymmetric_ROS.txt";
+    if (Enable::IP6)
+    {
+      if (G4FEMC::SETTING::readoutsplit)
+      {
+        mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_IP6-asymmetric_ROS.txt";
+      }
+      else
+      {
+        mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_IP6-asymmetric.txt";
+      }
+    }
     else
-      mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_asymmetric.txt";
+    {
+      if (G4FEMC::SETTING::readoutsplit)
+      {
+        mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_asymmetric_ROS.txt";
+      }
+      else
+      {
+        mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_asymmetric.txt";
+      }
+    }
   }
   // ECAL surrounding dual readout calorimeter
   else if (G4FEMC::SETTING::FwdSquare)
   {
     if (G4FEMC::SETTING::readoutsplit)
+    {
       mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_FwdSquare_ROS.txt";
+    }
     else
+    {
       mapping_femc << getenv("CALIBRATIONROOT") << "/ForwardEcal/mapping/towerMap_FEMC_FwdSquare.txt";
+    }
   }
   // PbScint ECAL with enlarged beam pipe opening for Mar 2020 beam pipe
   else
@@ -274,9 +322,13 @@ void FEMC_Towers()
   TowerCalibration2->Verbosity(verbosity);
   TowerCalibration2->set_calib_algorithm(RawTowerCalibration::kSimple_linear_calibration);
   if (G4FEMC::SETTING::readoutsplit)
-    TowerCalibration2->set_calib_const_GeV_ADC(1.0 / (0.249*0.84));  // sampling fraction = 0.249 for e-
-  else 
+  {
+    TowerCalibration2->set_calib_const_GeV_ADC(1.0 / (0.249 * 0.84));  // sampling fraction = 0.249 for e-
+  }
+  else
+  {
     TowerCalibration2->set_calib_const_GeV_ADC(1.0 / 0.249);  // sampling fraction = 0.249 for e-
+  }
   TowerCalibration2->set_pedstal_ADC(0);
   se->registerSubsystem(TowerCalibration2);
 

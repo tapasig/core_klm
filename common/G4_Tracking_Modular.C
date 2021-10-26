@@ -44,14 +44,14 @@ namespace G4TRACKING
 
 namespace TRACKING
 {
-  std::string TrackNodeNameInner = "TrackMapInner";
+  std::string TrackNodeNameInner = "InnerTrackMap";
 } // namespace TRACKING
 
 //-----------------------------------------------------------------------------//
 void TrackingInit()
 {
   TRACKING::TrackNodeName = "TrackMap";
-  TRACKING::TrackNodeNameInner = "TrackMapInner";
+  TRACKING::TrackNodeNameInner = "InnerTrackMap";
 }
 //-----------------------------------------------------------------------------//
 void Tracking_Reco(TString specialSetting = "")
@@ -256,12 +256,16 @@ void Tracking_Reco(TString specialSetting = "")
   
   // central barrel 
   if (Enable::CTTL){
+    float resLGAD_barrel = resLGAD;
+    if(G4TTL::SETTING::optionLYSO){
+      resLGAD_barrel = 35e-1; // https://cds.cern.ch/record/2667167/files/CMS-TDR-020.pdf page 33 bottom
+    }
     for (int i = 0; i < G4TTL::layer[1]; i++){
       kalman->add_phg4hits(Form("G4HIT_CTTL_%d", i),           //      const std::string& phg4hitsNames,
                           PHG4TrackFastSim::Cylinder,  //      const DETECTOR_TYPE phg4dettype,
                           999,                               //      const float radres,
-                          resLGAD,                    //      const float phires,
-                          resLGAD,                    //      const float lonres, *ignored in plane detector*
+                          resLGAD_barrel,                //      const float phires,
+                          resLGAD_barrel,                //      const float lonres, *ignored in plane detector*
                           0.95,                              //      const float eff,
                           0);                                //      const float noise
       kalman -> add_cylinder_state(Form("CTTL_%d",i), G4TTL::positionToVtx[1][i]);
@@ -388,15 +392,13 @@ void Tracking_Reco(TString specialSetting = "")
   //-------------------------
   if (Enable::FHCAL) {
     kalman->add_state_name("FHCAL");
-  //   kalman->add_zplane_state("FHCAL", 350);
   }
 
   //-------------------------
   // LFHCAL
   //-------------------------
   if (Enable::LFHCAL) {
-    // kalman->add_state_name("FHCAL");
-    kalman->add_zplane_state("LFHCAL", 350);
+    kalman->add_state_name("LFHCAL");
   }
   //-------------------------
   // CEMC
@@ -411,8 +413,7 @@ void Tracking_Reco(TString specialSetting = "")
   //-------------------------
 
   if (Enable::BECAL){
-    // kalman->add_state_name("BECAL");
-    kalman -> add_cylinder_state("BECAL", 105);
+    kalman->add_state_name("BECAL");
   }
   
   //-------------------------
@@ -446,7 +447,7 @@ void Tracking_Reco(TString specialSetting = "")
   //-------------------------
   if ((Enable::EEMCH ) )
   {
-    // kalman->add_state_name("EEMCG");
+//     kalman->add_state_name("EEMCG");
     kalman->add_zplane_state("EEMCG", -210);
   }
   
@@ -455,8 +456,16 @@ void Tracking_Reco(TString specialSetting = "")
   //-------------------------
   if ((Enable::EHCAL ) )
   {
-    // kalman->add_state_name("EHCAL");
-    kalman->add_zplane_state("EHCAL", -350);
+    kalman->add_state_name("EHCAL");
+  }
+  
+  //-------------------------
+  // DIRC
+  //-------------------------
+  if ((Enable::DIRC ) )
+  {
+    // kalman->add_state_name("DIRC");
+    kalman->add_zplane_state("DIRC", 185);
   }
 
 
@@ -532,6 +541,8 @@ void Tracking_Eval(const std::string &outputfile, TString specialSetting = "")
   if(Enable::FHCAL && G4TRACKING::PROJECTION_FHCAL) fast_sim_eval->AddProjection("FHCAL");
   if(Enable::FEMC && G4TRACKING::PROJECTION_FEMC) fast_sim_eval->AddProjection("FEMC");
   // if(Enable::DRCALO && G4TRACKING::PROJECTION_DRCALO) fast_sim_eval->AddProjection("DRCALO_0");
+
+  if(Enable::DIRC) fast_sim_eval->AddProjection("DIRC");
 
   // write to output file
   fast_sim_eval->set_filename(outputfile);

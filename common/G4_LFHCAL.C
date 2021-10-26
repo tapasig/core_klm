@@ -57,6 +57,7 @@ namespace G4LFHCAL
     bool asymmetric = false;
     bool wDR = false;
     bool FwdSquare = false;
+    bool FwdConfig = false;
     bool longer = false;
   }  // namespace SETTING
 }  // namespace G4LFHCAL
@@ -79,6 +80,14 @@ TString GetMappingFile(){
       mappinFileName +=  "/LFHcal/mapping/towerMap_LFHCAL_wDR.txt";
   }
   // HCal Fe-Scint surrounding dual readout calorimeter R>50cm
+  else if (G4LFHCAL::SETTING::FwdConfig)
+  {
+    if (G4LFHCAL::SETTING::longer)
+      mappinFileName += "/LFHcal/mapping/towerMap_LFHCAL_FwdConfig-long.txt";
+    else 
+      mappinFileName += "/LFHcal/mapping/towerMap_LFHCAL_FwdConfig.txt";
+  }
+  // HCal Fe-Scint surrounding dual readout calorimeter R>50cm
   else if (G4LFHCAL::SETTING::FwdSquare)
   {
     if (G4LFHCAL::SETTING::longer)
@@ -89,11 +98,17 @@ TString GetMappingFile(){
   // full HCal Fe-Scint with asymmetric centering around beampipe
   else if (G4LFHCAL::SETTING::asymmetric)
   {
-    if (G4LFHCAL::SETTING::longer)
-      mappinFileName += "/LFHcal/mapping/towerMap_LFHCAL_asymmetric-long.txt";
-    else 
-      mappinFileName += "/LFHcal/mapping/towerMap_LFHCAL_asymmetric.txt";
-      
+    if (Enable::IP6){
+      if (G4LFHCAL::SETTING::longer)
+        mappinFileName += "/LFHcal/mapping/towerMap_LFHCAL_IP6-asymmetric-long.txt";
+      else 
+        mappinFileName += "/LFHcal/mapping/towerMap_LFHCAL_IP6-asymmetric.txt";
+    } else {
+      if (G4LFHCAL::SETTING::longer)
+        mappinFileName += "/LFHcal/mapping/towerMap_LFHCAL_asymmetric-long.txt";
+      else 
+        mappinFileName += "/LFHcal/mapping/towerMap_LFHCAL_asymmetric.txt";      
+    }
   }
   //  PSD like HCal Fe-Scint with enlarged beam pipe opening for Mar 2020 beam pipe
   else
