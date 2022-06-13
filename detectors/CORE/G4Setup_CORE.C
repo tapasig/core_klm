@@ -27,6 +27,11 @@
 #include <G4_Pipe_EIC.C>
 
 #include <g4detectors/PHG4CylinderSubsystem.h>
+
+#include <eicg4b0/EICG4B0Subsystem.h>
+#include <eicg4b0ecal/EICG4B0ECALSubsystem.h>
+#include <eicg4bwd/EICG4BwdSubsystem.h>
+
 #include <g4eval/PHG4DstCompressReco.h>
 #include <g4main/PHG4Reco.h>
 #include <g4main/PHG4TruthSubsystem.h>
@@ -42,6 +47,9 @@ void G4Init()
 {
   if (Enable::PIPE) PipeInit();
   if (Enable::HFARFWD_MAGNETS_IP6 || Enable::HFARFWD_MAGNETS_IP8) hFarFwdBeamLineInit();
+
+ hFarFwdBeamLineInit();
+
   if (Enable::ALLSILICON) AllSiliconInit();
   if (Enable::TRACKING) TrackingInit();
   if (Enable::BBC) BbcInit();
@@ -106,6 +114,13 @@ int G4Setup()
   g4Reco->set_field_rescale(G4MAGNET::magfield_rescale);
 
   double radius = 0.;
+
+
+  // Far Forward Region
+  if (Enable::HFARFWD_MAGNETS_IP6 || Enable::HFARFWD_MAGNETS_IP8) hFarFwdDefineMagnets(g4Reco);
+  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+
 
   if (Enable::ALLSILICON) AllSiliconSetup(g4Reco);
   if (Enable::BBC) Bbc(g4Reco);

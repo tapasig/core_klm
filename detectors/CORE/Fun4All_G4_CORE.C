@@ -6,11 +6,11 @@
 #include <DisplayOn.C>
 #include <G4Setup_CORE.C>
 #include <G4_Bbc.C>
-#include <G4_CaloTrigger.C>
-#include <G4_DSTReader_LBLDetector.C>
+//#include <G4_CaloTrigger.C>
+//#include <G4_DSTReader_LBLDetector.C>
 #include <G4_FwdJets.C>
 #include <G4_Global.C>
-#include <G4_HIJetReco.C>
+//#include <G4_HIJetReco.C>
 #include <G4_Input.C>
 #include <G4_Jets.C>
 #include <G4_Production.C>
@@ -50,6 +50,13 @@ int Fun4All_G4_CORE(
   //===============
   // Input options
   //===============
+
+  // switching IPs by comment/uncommenting the following lines
+  // used for both beamline setting and for the event generator crossing boost
+  //Enable::IP6 = true;
+  Enable::IP8 = true;
+
+
 
   // Either:
   // read previously generated g4-hits files, in this case it opens a DST and skips
@@ -178,6 +185,9 @@ int Fun4All_G4_CORE(
   //Option to convert DST to human command readable TTree for quick poke around the outputs
   //  Enable::DSTREADER = true;
 
+  // turn the display on (default off)
+  Enable::DISPLAY = true;
+
   //======================
   // What to run
   //======================
@@ -185,6 +195,9 @@ int Fun4All_G4_CORE(
   //  Enable::ABSORBER = true;
   //  Enable::OVERLAPCHECK = true;
   //  Enable::VERBOSITY = 1;
+
+  Enable::HFARFWD_MAGNETS = true;
+  Enable::HFARFWD_VIRTUAL_DETECTORS = true;
 
   //  Enable::BBC = true;
   Enable::BBCFAKE = true; // Smeared vtx and t0, use if you don't want real BBC in simulation
@@ -194,16 +207,18 @@ int Fun4All_G4_CORE(
   // EIC beam pipe extension beyond the Be-section:
   G4PIPE::use_forward_pipes = false;
   // EIC hadron far forward magnets and detectors. IP6 and IP8 are incompatible (pick either or);
-  Enable::HFARFWD_MAGNETS_IP6=true;
-  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
-  Enable::HFARFWD_MAGNETS_IP8=false;
-  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+
+
+////  Enable::HFARFWD_MAGNETS_IP6=true;
+////  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+////  Enable::HFARFWD_MAGNETS_IP8=false;
+////  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
 
   //-------------------------------------
   //CORE geometry - tracking + magnet
   //-------------------------------------
-  Enable::ALLSILICON = true;
-  Enable::ALLSILICON_ABSORBER = true;
+//  Enable::ALLSILICON = true;
+//  Enable::ALLSILICON_ABSORBER = true;
   //  Enable::ALLSILICON_OVERLAPCHECK = true;
 
   Enable::TRACKING = true;
@@ -250,12 +265,12 @@ int Fun4All_G4_CORE(
   Enable::RICH = true;
   Enable::FTTL = true;
 
-  Enable::FEMC = true;
-  Enable::FEMC_ABSORBER = false;
-  Enable::FEMC_CELL = Enable::FEMC && true;
-  Enable::FEMC_TOWER = Enable::FEMC_CELL && true;
-  Enable::FEMC_CLUSTER = Enable::FEMC_TOWER && true;
-  Enable::FEMC_EVAL = Enable::FEMC_CLUSTER && false;
+//  Enable::FEMC = true;
+//  Enable::FEMC_ABSORBER = false;
+//  Enable::FEMC_CELL = Enable::FEMC && true;
+//  Enable::FEMC_TOWER = Enable::FEMC_CELL && true;
+//  Enable::FEMC_CLUSTER = Enable::FEMC_TOWER && true;
+//  Enable::FEMC_EVAL = Enable::FEMC_CLUSTER && false;
 
   Enable::FHCAL = true;
   Enable::FHCAL_ABSORBER = false;
@@ -285,7 +300,7 @@ int Fun4All_G4_CORE(
   //-------------------------------------
   Enable::GLOBAL_RECO = true;
   Enable::GLOBAL_FASTSIM = true;
-  Enable::CALOTRIGGER = true && Enable::CEMC_TOWER && Enable::HCALIN_TOWER && Enable::HCALOUT_TOWER;
+////  Enable::CALOTRIGGER = true && Enable::CEMC_TOWER && Enable::HCALIN_TOWER && Enable::HCALOUT_TOWER;
 
   // Select only one jet reconstruction- they currently use the same
   // output collections on the node tree!
@@ -406,7 +421,7 @@ int Fun4All_G4_CORE(
   // Calo Trigger Simulation
   //-----------------
 
-  if (Enable::CALOTRIGGER) CaloTrigger_Sim();
+////  if (Enable::CALOTRIGGER) CaloTrigger_Sim();
 
   //---------
   // Jet reco
@@ -414,7 +429,7 @@ int Fun4All_G4_CORE(
 
   if (Enable::JETS) Jet_Reco();
 
-  if (Enable::HIJETS) HIJetReco();
+////  if (Enable::HIJETS) HIJetReco();
 
   if (Enable::FWDJETS) Jet_FwdReco();
 
@@ -426,7 +441,7 @@ int Fun4All_G4_CORE(
     outputroot.erase(pos, remove_this.length());
   }
 
-  if (Enable::DSTREADER) G4DSTreader_LBLDetector(outputroot + "_DSTReader.root");
+////  if (Enable::DSTREADER) G4DSTreader_LBLDetector(outputroot + "_DSTReader.root");
 
   //----------------------
   // Simulation evaluation
@@ -474,6 +489,24 @@ int Fun4All_G4_CORE(
   //-----------------
   // Event processing
   //-----------------
+
+  if (Enable::DISPLAY)
+  {
+    DisplayOn();
+
+    gROOT->ProcessLine("Fun4AllServer *se = Fun4AllServer::instance();");
+    gROOT->ProcessLine("PHG4Reco *g4 = (PHG4Reco *) se->getSubsysReco(\"PHG4RECO\");");
+
+    cout << "-------------------------------------------------" << endl;
+    cout << "You are in event display mode. Run one event with" << endl;
+    cout << "se->run(1)" << endl;
+    cout << "Run Geant4 command with following examples" << endl;
+    gROOT->ProcessLine("displaycmd()");
+
+    return 0;
+  }
+  
+
   if (nEvents < 0)
   {
     return 0;
@@ -500,7 +533,9 @@ int Fun4All_G4_CORE(
   {
     Production_MoveOutput();
   }
-  gSystem->Exit(0);
-  return 0;
+
+   gSystem->Exit(0);
+   return 0;
+
 }
 #endif
