@@ -1,0 +1,2 @@
+WAHEGURU
+./runFun4All.sh: line 4: cd: BILL: No such file or directory

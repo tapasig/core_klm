@@ -1,0 +1,319 @@
+
+Processing Fun4All_G4_CORE.C...
+PHRandomSeed::GetSeed() seed: 3991559431
+Realistic hit planes
+Starting B0 Tracker layer 1
+Pipe Hole: 3.5	-0.209736
+Starting B0 Tracker layer 2
+Pipe Hole: 3.5	-0.209736
+Starting B0 Tracker layer 3
+Pipe Hole: 3.5	-0.209736
+Starting B0 Tracker layer 4
+Pipe Hole: 3.5	-0.209736
+G4_Magnet...Magnet Material: Copper_Magnet
+ check 1: 20
+ check 2: cell= 0 length :20 z = -210 thickness =230
+ check 2: cell= 1 length :20 z = -230 thickness =230
+ check 2: cell= 2 length :20 z = -250 thickness =230
+ check 2: cell= 3 length :20 z = -270 thickness =230
+ check 2: cell= 4 length :20 z = -290 thickness =230
+PHRandomSeed::GetSeed() seed: 2216884183
+
+**************************************************************
+ Geant4 version Name: geant4-10-06-patch-02    (29-May-2020)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+<<< Geant4 Physics List simulation engine: FTFP_BERT
+
+### Birks coefficients used in run time
+   G4_POLYSTYRENE     0.07943 mm/MeV     0.00841958 g/cm^2/MeV  massFactor=  101.167 effCharge= 0.027027
+PHRandomSeed::GetSeed() seed: 3466612776
+def: using default for FHCAL towers
+PHRandomSeed::GetSeed() seed: 4157196716
+PHRandomSeed::GetSeed() seed: 159164765
+PHRandomSeed::GetSeed() seed: 3008137658
+magnetMaterialAnalysis
+magnetMaterialAnalysis::Init(PHCompositeNode *topNode) Initializing
+Fun4AllServer: Runnumber forced to 0 by RUNNUMBER IntFlag
+Fun4AllServer::setRun(): could not get timestamp for run  0, using tics(0) timestamp: Wed Dec 31 19:00:00 1969
+PHFieldUtility::GetFieldConfigNode - field map with configuration from input default: PHFieldConfigv2::identify - Field type of [Uniform field] with field vector of [0, 0, 3] tesla
+PHG4ForwardHcalDisplayAction::disabled detailed view of towers
+ !!! length = 0.1 !!! length = 0.1 !!! length = 0.1 !!! length = 0.1Checking overlaps for volume FTTL_0_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume FTTL_0_SiliconSensor_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume FTTL_0_Metalconnection_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume FTTL_0_HDI_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume FTTL_0_Cooling_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume FTTL_0_Support_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume FTTL_0_Support_Gap_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume FTTL_0_Support2_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume ETTL_0_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume ETTL_0_SiliconSensor_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume ETTL_0_Metalconnection_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume ETTL_0_HDI_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume ETTL_0_Cooling_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume ETTL_0_Support_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume ETTL_0_Support_Gap_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume ETTL_0_Support2_Physical (G4IntersectionSolid) ... OK! 
+Checking overlaps for volume CTTL_0_SiliconSensor_0 (G4Tubs) ... OK! 
+Checking overlaps for volume CTTL_0_Metalconnection_1 (G4Tubs) ... OK! 
+Checking overlaps for volume CTTL_0_HDI_2 (G4Tubs) ... OK! 
+Checking overlaps for volume CTTL_0_Cooling_3 (G4Tubs) ... OK! 
+Checking overlaps for volume CTTL_0_Support1_4 (G4Tubs) ... OK! 
+Checking overlaps for volume CTTL_0_Support_Gap_5 (G4Tubs) ... OK! 
+Checking overlaps for volume CTTL_0_Support2_6 (G4Tubs) ... OK! 
+Checking overlaps for volume MAGNET_DET_INNER_0 (G4Tubs) ... OK! 
+Checking overlaps for volume MAGNET_DET_OUTER_1 (G4Tubs) ... OK! 
+Checking overlaps for volume BH_1 (G4Tubs) ... OK! 
+Checking overlaps for volume BH_FORWARD_PLUS_1 (G4Tubs) ... 
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : GeomVol1002
+      issued by : G4PVPlacement::CheckOverlaps()
+Overlap with volume already placed !
+          Overlap is detected for volume BH_FORWARD_PLUS_1:0 (G4Tubs)
+          with hHcalTower_envelope:0 (G4SubtractionSolid) volume's
+          local point (-1986.54,345.524,400.002), overlapping by at least: 9.99983 cm 
+NOTE: Reached maximum fixed number -1- of overlaps reports for this volume !
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+Checking overlaps for volume BH_FORWARD_NEG_1 (G4Tubs) ... OK! 
+
+ FTFP_BERT : new threshold between BERT and FTFP is over the interval 
+ for pions :   3 to 6 GeV
+ for kaons :   3 to 6 GeV
+ for proton :  3 to 6 GeV
+ for neutron : 3 to 6 GeV
+
+PHG4Reco::InitRun - export geometry to DST via tmp file /tmp/PHGeomUtility_geom_file_57df3c8f-2d27-4aa2-b5b2-ee29ac60f408.gdml
+PHG4GDML: Writing '/tmp/PHGeomUtility_geom_file_57df3c8f-2d27-4aa2-b5b2-ee29ac60f408.gdml'...
+PHG4GDML: Writing definitions...
+G4GDML: Writing materials...
+PHG4GDML: Writing solids...
+PHG4GDML: Writing structure...
+G4GDML: Writing setup...
+PHG4GDML: Writing surfaces...
+PHG4GDML: Writing '/tmp/PHGeomUtility_geom_file_57df3c8f-2d27-4aa2-b5b2-ee29ac60f408.gdml' done !
+PHRandomSeed::GetSeed() seed: 2316336338
+--------------------------------------
+
+List of Nodes in Fun4AllServer:
+Node Tree under TopNode TOP
+TOP (PHCompositeNode)/
+   DST (PHCompositeNode)/
+      G4HIT_DIRC (IO,PHG4HitContainer)
+      G4HIT_RICH (IO,PHG4HitContainer)
+      G4HIT_FTTL_0 (IO,PHG4HitContainer)
+      G4HIT_ETTL_0 (IO,PHG4HitContainer)
+      PHG4INEVENT (PHDataNode)
+      G4HIT_hFarFwdBeamLineEnclosure_0 (IO,PHG4HitContainer)
+      BEAMLINEMAGNET (PHCompositeNode)/
+         G4HIT_ABSORBER_BEAMLINEMAGNET (IO,PHG4HitContainer)
+         G4HIT_BEAMLINEMAGNET (IO,PHG4HitContainer)
+      G4HIT_offMomTruth (IO,PHG4HitContainer)
+      G4HIT_ZDCsurrogate (IO,PHG4HitContainer)
+      rpTruth (PHCompositeNode)/
+         G4HIT_rpTruth (IO,PHG4HitContainer)
+         G4HIT_rpTruth_VirtSheet (IO,PHG4HitContainer)
+      b0Truth_0 (PHCompositeNode)/
+         G4HIT_b0Truth_0 (IO,PHG4HitContainer)
+      b0Truth_1 (PHCompositeNode)/
+         G4HIT_b0Truth_1 (IO,PHG4HitContainer)
+      b0Truth_2 (PHCompositeNode)/
+         G4HIT_b0Truth_2 (IO,PHG4HitContainer)
+      b0Truth_3 (PHCompositeNode)/
+         G4HIT_b0Truth_3 (IO,PHG4HitContainer)
+      CEMC (PHCompositeNode)/
+         G4HIT_CEMC (IO,PHG4HitContainer)
+         G4CELL_CEMC (IO,PHG4CellContainer)
+         TOWER_SIM_CEMC (IO,RawTowerContainer)
+         TOWER_RAW_CEMC (IO,RawTowerContainer)
+         TOWER_CALIB_CEMC (IO,RawTowerContainer)
+         CLUSTER_CEMC (IO,RawClusterContainer)
+      CEMC_NEG (PHCompositeNode)/
+         G4HIT_CEMC_NEG (IO,PHG4HitContainer)
+      FHCAL (PHCompositeNode)/
+         G4HIT_FHCAL (IO,PHG4HitContainer)
+         TOWER_SIM_FHCAL (IO,RawTowerContainer)
+         TOWER_RAW_FHCAL (IO,RawTowerContainer)
+         TOWER_CALIB_FHCAL (IO,RawTowerContainer)
+         CLUSTER_FHCAL (IO,RawClusterContainer)
+      EEMC (PHCompositeNode)/
+         G4HIT_EEMC (IO,PHG4HitContainer)
+         TOWER_SIM_EEMC (IO,RawTowerContainer)
+         TOWER_RAW_EEMC (IO,RawTowerContainer)
+         TOWER_CALIB_EEMC (IO,RawTowerContainer)
+         CLUSTER_EEMC (IO,RawClusterContainer)
+      CTTL_0 (PHCompositeNode)/
+         G4HIT_CTTL_0 (IO,PHG4HitContainer)
+      FLUXRET (PHCompositeNode)/
+         G4HIT_FLUXRET (IO,PHG4HitContainer)
+      MAGNET_DET_INNER (PHCompositeNode)/
+         G4HIT_MAGNET_DET_INNER (IO,PHG4HitContainer)
+      MAGNET_DET_OUTER (PHCompositeNode)/
+         G4HIT_MAGNET_DET_OUTER (IO,PHG4HitContainer)
+      G4HIT_BH_1 (IO,PHG4HitContainer)
+      BH_FORWARD_PLUS (PHCompositeNode)/
+         G4HIT_BH_FORWARD_PLUS (IO,PHG4HitContainer)
+      BH_FORWARD_NEG (PHCompositeNode)/
+         G4HIT_BH_FORWARD_NEG (IO,PHG4HitContainer)
+      G4TruthInfo (IO,PHG4TruthInfoContainer)
+      BBC (PHCompositeNode)/
+         BbcVertexMap (IO,BbcVertexMapv1)
+      TRACKS (PHCompositeNode)/
+         TrackMap (IO,SvtxTrackMap_v1)
+         SvtxVertexMap (IO,SvtxVertexMap_v1)
+      GLOBAL (PHCompositeNode)/
+         GlobalVertexMap (IO,GlobalVertexMapv1)
+   RUN (PHCompositeNode)/
+      FIELD_CONFIG (IO,PHFieldConfigv2)
+      G4GEOPARAM_hFarFwdBeamLineEnclosure_0 (IO,PdbParameterMapContainer)
+      CYLINDERGEOM_hFarFwdBeamLineEnclosure_0 (IO,PHG4CylinderGeomContainer)
+      BEAMLINEMAGNET (PHCompositeNode)/
+         G4GEOPARAM_BEAMLINEMAGNET (IO,PdbParameterMapContainer)
+      offMomTruth (PHCompositeNode)/
+         G4GEOPARAM_offMomTruth (IO,PdbParameterMapContainer)
+      BLOCKGEOM_offMomTruth (IO,PHG4BlockGeomContainer)
+      ZDCsurrogate (PHCompositeNode)/
+         G4GEOPARAM_ZDCsurrogate (IO,PdbParameterMapContainer)
+      BLOCKGEOM_ZDCsurrogate (IO,PHG4BlockGeomContainer)
+      rpTruth (PHCompositeNode)/
+         G4GEOPARAM_rpTruth (IO,PdbParameterMapContainer)
+      b0Truth_0 (PHCompositeNode)/
+         G4GEOPARAM_b0Truth_0 (IO,PdbParameterMapContainer)
+      b0Truth_1 (PHCompositeNode)/
+         G4GEOPARAM_b0Truth_1 (IO,PdbParameterMapContainer)
+      b0Truth_2 (PHCompositeNode)/
+         G4GEOPARAM_b0Truth_2 (IO,PdbParameterMapContainer)
+      b0Truth_3 (PHCompositeNode)/
+         G4GEOPARAM_b0Truth_3 (IO,PdbParameterMapContainer)
+      ABSORBER_CEMC (PHCompositeNode)/
+         G4GEOPARAM_ABSORBER_CEMC (IO,PdbParameterMapContainer)
+      CEMC (PHCompositeNode)/
+         G4GEOPARAM_CEMC (IO,PdbParameterMapContainer)
+         CYLINDERGEOM_CEMC (IO,PHG4CylinderGeomContainer)
+         G4CELLPARAM_CEMC (IO,PdbParameterMapContainer)
+         TOWERGEOM_CEMC (IO,RawTowerGeomContainer_Cylinderv1)
+      CEMC_NEG (PHCompositeNode)/
+         G4GEOPARAM_CEMC_NEG (IO,PdbParameterMapContainer)
+         CYLINDERGEOM_CEMC_NEG (IO,PHG4CylinderGeomContainer)
+      G4GEOPARAM_CEMC_ELECTRONICS_0 (IO,PdbParameterMapContainer)
+      MAGNET (PHCompositeNode)/
+         G4GEOPARAM_MAGNET (IO,PdbParameterMapContainer)
+      FHCAL (PHCompositeNode)/
+         G4GEOPARAM_FHCAL (IO,PdbParameterMapContainer)
+      EEMC (PHCompositeNode)/
+         G4GEOPARAM_EEMC (IO,PdbParameterMapContainer)
+      DIRC (PHCompositeNode)/
+         G4GEOPARAM_DIRC (IO,PdbParameterMapContainer)
+      CTTL_0 (PHCompositeNode)/
+         G4GEOPARAM_CTTL_0 (IO,PdbParameterMapContainer)
+         CYLINDERGEOM_CTTL_0 (IO,PHG4CylinderGeomContainer)
+      FLUXRET (PHCompositeNode)/
+         G4GEOPARAM_FLUXRET (IO,PdbParameterMapContainer)
+         CYLINDERGEOM_FLUXRET (IO,PHG4CylinderGeomContainer)
+      MAGNET_DET_INNER (PHCompositeNode)/
+         G4GEOPARAM_MAGNET_DET_INNER (IO,PdbParameterMapContainer)
+         CYLINDERGEOM_MAGNET_DET_INNER (IO,PHG4CylinderGeomContainer)
+      MAGNET_DET_OUTER (PHCompositeNode)/
+         G4GEOPARAM_MAGNET_DET_OUTER (IO,PdbParameterMapContainer)
+         CYLINDERGEOM_MAGNET_DET_OUTER (IO,PHG4CylinderGeomContainer)
+      G4GEOPARAM_BH_1 (IO,PdbParameterMapContainer)
+      CYLINDERGEOM_BH_1 (IO,PHG4CylinderGeomContainer)
+      BH_FORWARD_PLUS (PHCompositeNode)/
+         G4GEOPARAM_BH_FORWARD_PLUS (IO,PdbParameterMapContainer)
+         CYLINDERGEOM_BH_FORWARD_PLUS (IO,PHG4CylinderGeomContainer)
+      BH_FORWARD_NEG (PHCompositeNode)/
+         G4GEOPARAM_BH_FORWARD_NEG (IO,PdbParameterMapContainer)
+         CYLINDERGEOM_BH_FORWARD_NEG (IO,PHG4CylinderGeomContainer)
+      GEOMETRY_IO (IO,PHGeomIOTGeo)
+      CYLINDERCELLGEOM_CEMC (IO,PHG4CylinderCellGeomContainer)
+      TOWERGEOM_FHCAL (IO,RawTowerGeomContainerv1)
+      TOWERGEOM_EEMC (IO,RawTowerGeomContainerv1)
+      PHG4TrackFastSim_Parameter (IO,PdbParameterMap)
+   PAR (PHCompositeNode)/
+      FIELD_MAP (PHDataNode)
+      G4GEO_hFarFwdBeamLineEnclosure_0 (PHDataNode)
+      BEAMLINEMAGNET (PHCompositeNode)/
+         G4GEO_BEAMLINEMAGNET (PHDataNode)
+      offMomTruth (PHCompositeNode)/
+         G4GEO_offMomTruth (PHDataNode)
+      ZDCsurrogate (PHCompositeNode)/
+         G4GEO_ZDCsurrogate (PHDataNode)
+      rpTruth (PHCompositeNode)/
+         G4GEO_rpTruth (PHDataNode)
+      b0Truth_0 (PHCompositeNode)/
+         G4GEO_b0Truth_0 (PHDataNode)
+      b0Truth_1 (PHCompositeNode)/
+         G4GEO_b0Truth_1 (PHDataNode)
+      b0Truth_2 (PHCompositeNode)/
+         G4GEO_b0Truth_2 (PHDataNode)
+      b0Truth_3 (PHCompositeNode)/
+         G4GEO_b0Truth_3 (PHDataNode)
+      ABSORBER_CEMC (PHCompositeNode)/
+         G4GEO_ABSORBER_CEMC (PHDataNode)
+      CEMC (PHCompositeNode)/
+         G4GEO_CEMC (PHDataNode)
+      CEMC_NEG (PHCompositeNode)/
+         G4GEO_CEMC_NEG (PHDataNode)
+      G4GEO_CEMC_ELECTRONICS_0 (PHDataNode)
+      MAGNET (PHCompositeNode)/
+         G4GEO_MAGNET (PHDataNode)
+      FHCAL (PHCompositeNode)/
+         G4GEO_FHCAL (PHDataNode)
+      EEMC (PHCompositeNode)/
+         G4GEO_EEMC (PHDataNode)
+      DIRC (PHCompositeNode)/
+         G4GEO_DIRC (PHDataNode)
+      CTTL_0 (PHCompositeNode)/
+         G4GEO_CTTL_0 (PHDataNode)
+      FLUXRET (PHCompositeNode)/
+         G4GEO_FLUXRET (PHDataNode)
+      MAGNET_DET_INNER (PHCompositeNode)/
+         G4GEO_MAGNET_DET_INNER (PHDataNode)
+      MAGNET_DET_OUTER (PHCompositeNode)/
+         G4GEO_MAGNET_DET_OUTER (PHDataNode)
+      G4GEO_BH_1 (PHDataNode)
+      BH_FORWARD_PLUS (PHCompositeNode)/
+         G4GEO_BH_FORWARD_PLUS (PHDataNode)
+      BH_FORWARD_NEG (PHCompositeNode)/
+         G4GEO_BH_FORWARD_NEG (PHDataNode)
+      G4GDML_CONFIG (PHDataNode)
+      GEOMETRY (PHDataNode)
+
+
+ Tapasi magnetMaterialAnalysis::process_event(PHCompositeNode *topNode) Processing Event
+Inner detector: G4HIT_MAGNET_DET_INNER
+Outer detector: G4HIT_MAGNET_DET_OUTER
+magnetMaterialAnalysis::End(PHCompositeNode *topNode) This is the End...
+Fun4AllHistoManager::dumpHistos() Writing root file: out.root
+All done
+magnetMaterialAnalysis::~magnetMaterialAnalysis Calling dtor
+=======================================================================
+======       Pre-compound/De-excitation Physics Parameters     ========
+=======================================================================
+Type of pre-compound inverse x-section              3
+Pre-compound model active                           1
+Pre-compound excitation low energy (MeV)            0.1
+Pre-compound excitation high energy (MeV)           30
+Type of de-excitation inverse x-section             3
+Type of de-excitation factory                       Evaporation+GEM
+Number of de-excitation channels                    68
+Min excitation energy (keV)                         0.01
+Min energy per nucleon for multifragmentation (MeV) 2e+05
+Limit excitation energy for Fermi BreakUp (MeV)     20
+Level density (1/MeV)                               0.075
+Use simple level density model                      1
+Use discrete excitation energy of the residual      0
+Time limit for long lived isomeres (ns)             1000
+Internal e- conversion flag                         1
+Store e- internal conversion data                   0
+Electron internal conversion ID                     2
+Correlated gamma emission flag                      0
+Max 2J for sampling of angular correlations         10
+Upload data before 1st event for                Z < 9
+=======================================================================

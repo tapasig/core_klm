@@ -1,0 +1,179 @@
+Binary file ./BILLTESTANALYSIS/diff_tagg_ana/build/.libs/libdifftaggana.so.0.0.0 matches
+Binary file ./BILLTESTANALYSIS/diff_tagg_ana/build/.libs/diff_tagg_ana.o matches
+./BILLTESTANALYSIS/diff_tagg_ana/build/.deps/diff_tagg_ana.Plo: /cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualIsAProxy.h \
+./BILLTESTANALYSIS/diff_tagg_ana/build/.deps/diff_tagg_ana.Plo: /cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualRWMutex.h \
+./BILLTESTANALYSIS/diff_tagg_ana/build/.deps/diff_tagg_ana.Plo: /cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualMutex.h \
+./BILLTESTANALYSIS/diff_tagg_ana/build/.deps/diff_tagg_ana.Plo: /cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualTreePlayer.h \
+./BILLTESTANALYSIS/diff_tagg_ana/build/.deps/diff_tagg_ana.Plo:/cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualIsAProxy.h:
+./BILLTESTANALYSIS/diff_tagg_ana/build/.deps/diff_tagg_ana.Plo:/cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualRWMutex.h:
+./BILLTESTANALYSIS/diff_tagg_ana/build/.deps/diff_tagg_ana.Plo:/cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualMutex.h:
+./BILLTESTANALYSIS/diff_tagg_ana/build/.deps/diff_tagg_ana.Plo:/cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualTreePlayer.h:
+./BILLTESTANALYSIS/diff_tagg_ana/diff_tagg_ana.h:  virtual ~diff_tagg_ana();
+./BILLTESTANALYSIS/tutorials/AnaTutorial/macro/Fun4All_G4_EICDetector_AnaTutorial.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./BILLTESTANALYSIS/tutorials/AnaTutorial/macro/Fun4All_G4_EICDetector_AnaTutorial.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./BILLTESTANALYSIS/tutorials/AnaTutorial/macro/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+./BILLTESTANALYSIS/tutorials/AnaTutorial/macro/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+./BILLTESTANALYSIS/tutorials/AnaTutorial/README.md:Here, this assumes that you have set an environment variable `$MYINSTALL` that points to your install directory. For example, `$ echo $MYINSTALL` returns `/home/vagrant/install` for me, where the install directory is set on my virtual machine when running the Singularity container. The install directory can be wherever you like, but it is generally good practice to have one where all of your installation libraries will live.
+./BILLTESTANALYSIS/tutorials/AnaTutorial/src/AnaTutorial.h:  virtual ~AnaTutorial();
+./BILLTESTANALYSIS/tutorials/MyOwnTTree/src/MakeSimpleTree.h:  virtual ~MakeSimpleTree() {}
+./BILLTESTANALYSIS/tutorials/MyOwnTTree/src/MyTClonesArray.h:// This class doesn't play the virtual base class inheritance game we do
+./BILLTESTANALYSIS/tutorials/MyOwnTTree/src/MyTClonesArray.h:  virtual ~MyTClonesArray();
+./BILLTESTANALYSIS/tutorials/MyOwnTTree/src/AnalyzeSimpleTree.h:  virtual ~AnalyzeSimpleTree() {}
+./BILLTESTANALYSIS/tutorials/MyOwnTTree/src/MySimpleTree.h:  virtual ~MySimpleTree() {}
+./BILLTESTANALYSIS/tutorials/MyOwnTTree/README.md:Unlike our DST's there is no virtual base class to keep old files readable 
+./BILLTESTANALYSIS/tutorials/AnaTutorialECCE/macro/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+./BILLTESTANALYSIS/tutorials/AnaTutorialECCE/macro/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+./BILLTESTANALYSIS/tutorials/AnaTutorialECCE/macro/G4Setup_EICDetector.C:  if (Enable::HFARBWD_VIRTUAL_DETECTORS_IP6) hFarBwdDefineDetectorsIP6(g4Reco);
+./BILLTESTANALYSIS/tutorials/AnaTutorialECCE/macro/G4Setup_EICDetector.C:  if (Enable::HFARBWD_VIRTUAL_DETECTORS_IP8) hFarBwdDefineDetectorsIP8(g4Reco);
+./BILLTESTANALYSIS/tutorials/AnaTutorialECCE/macro/Fun4All_G4_EICDetector_AnaTutorial.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/tutorials/AnaTutorialECCE/macro/Fun4All_G4_EICDetector_AnaTutorial.C:  Enable::HFARBWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/tutorials/AnaTutorialECCE/macro/Fun4All_G4_EICDetector_AnaTutorial.C:  Enable::FFR_EVAL = Enable::HFARFWD_MAGNETS && Enable::HFARFWD_VIRTUAL_DETECTORS && true;
+./BILLTESTANALYSIS/tutorials/AnaTutorialECCE/src/AnaTutorialECCE.h:  virtual ~AnaTutorialECCE();
+./BILLTESTANALYSIS/tutorials/AnaTutorialECCE/README.md:Here, this assumes that you have set an environment variable `$MYINSTALL` that points to your install directory. For example, `$ echo $MYINSTALL` returns `/home/vagrant/install` for me, where the install directory is set on my virtual machine when running the Singularity container. The install directory can be wherever you like, but it is generally good practice to have one where all of your installation libraries will live.
+./BILLTESTANALYSIS/tutorials/MagneticField/src/FieldMapReadBack.h:  virtual ~FieldMapReadBack() {}
+./BILLTESTANALYSIS/tutorials/CaloAna/src/CaloAna.h:  virtual ~CaloAna();
+./BILLTESTANALYSIS/tutorials/myjetanalysis/src/MyJetAnalysis.h:  virtual ~MyJetAnalysis();
+./BILLTESTANALYSIS/bill_diff_tagg_script/diff_tagg_ana.h:  virtual ~diff_tagg_ana();
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_SIMPLE_IP8.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_SIMPLE_IP8.C:  Enable::HFARBWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_SIMPLE_IP8.C:  Enable::FFR_EVAL = Enable::HFARFWD_MAGNETS && Enable::HFARFWD_VIRTUAL_DETECTORS && true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_GUN.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_GUN.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_validation_IP8.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_validation_IP8.C:  Enable::HFARBWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_validation_IP8.C:  Enable::FFR_EVAL = Enable::HFARFWD_MAGNETS && Enable::HFARFWD_VIRTUAL_DETECTORS && true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_IP8.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_IP8.C:  Enable::HFARBWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_IP8.C:  Enable::FFR_EVAL = Enable::HFARFWD_MAGNETS && Enable::HFARFWD_VIRTUAL_DETECTORS && true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_SIMPLE.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_SIMPLE.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP8 = false;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP6 = false;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_validation.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./BILLTESTANALYSIS/bill_diff_tagg_script/main_macro/Fun4All_G4_EICDetector_validation.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./BILLTESTANALYSIS/bill_diff_tagg_script/diff_tagg_ana/diff_tagg_ana.h:  virtual ~diff_tagg_ana();
+./BILLTESTANALYSIS/macros/detectors/Modular/G4Setup_ECCEModular.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+./BILLTESTANALYSIS/macros/detectors/Modular/G4Setup_ECCEModular.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+./BILLTESTANALYSIS/macros/detectors/Modular/G4Setup_ECCEModular.C:  if (Enable::HFARBWD_VIRTUAL_DETECTORS_IP6) hFarBwdDefineDetectorsIP6(g4Reco);
+./BILLTESTANALYSIS/macros/detectors/Modular/G4Setup_ECCEModular.C:  if (Enable::HFARBWD_VIRTUAL_DETECTORS_IP8) hFarBwdDefineDetectorsIP8(g4Reco);
+./BILLTESTANALYSIS/macros/detectors/Modular/Fun4All_G4_ECCEModular.C:  // Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/macros/detectors/Modular/Fun4All_G4_ECCEModular.C:  // Enable::HFARBWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/macros/detectors/Modular/Fun4All_G4_ECCEModular.C:    Enable::HFARFWD_VIRTUAL_DETECTORS = false;
+./BILLTESTANALYSIS/macros/detectors/Modular/Fun4All_G4_ECCEModular.C:  Enable::FFR_EVAL        = Enable::HFARFWD_MAGNETS && Enable::HFARFWD_VIRTUAL_DETECTORS && false;
+./BILLTESTANALYSIS/macros/detectors/EICDetector/Fun4All_G4_EICDetector_validation_IP8.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/macros/detectors/EICDetector/Fun4All_G4_EICDetector_validation_IP8.C:  Enable::HFARBWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/macros/detectors/EICDetector/Fun4All_G4_EICDetector_validation_IP8.C:  Enable::FFR_EVAL = Enable::HFARFWD_MAGNETS && Enable::HFARFWD_VIRTUAL_DETECTORS && true;
+./BILLTESTANALYSIS/macros/detectors/EICDetector/mFun4All_G4_EICDetector.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/macros/detectors/EICDetector/mFun4All_G4_EICDetector.C:  Enable::HFARBWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/macros/detectors/EICDetector/mFun4All_G4_EICDetector.C:  Enable::FFR_EVAL = Enable::HFARFWD_MAGNETS && Enable::HFARFWD_VIRTUAL_DETECTORS && true;
+./BILLTESTANALYSIS/macros/detectors/EICDetector/Fun4All_G4_EICDetector.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/macros/detectors/EICDetector/Fun4All_G4_EICDetector.C:  Enable::HFARBWD_VIRTUAL_DETECTORS = true;
+./BILLTESTANALYSIS/macros/detectors/EICDetector/Fun4All_G4_EICDetector.C:  Enable::FFR_EVAL = Enable::HFARFWD_MAGNETS && Enable::HFARFWD_VIRTUAL_DETECTORS && true;
+./BILLTESTANALYSIS/macros/detectors/EICDetector/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+./BILLTESTANALYSIS/macros/detectors/EICDetector/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+./BILLTESTANALYSIS/macros/detectors/EICDetector/G4Setup_EICDetector.C:  if (Enable::HFARBWD_VIRTUAL_DETECTORS_IP6) hFarBwdDefineDetectorsIP6(g4Reco);
+./BILLTESTANALYSIS/macros/detectors/EICDetector/G4Setup_EICDetector.C:  if (Enable::HFARBWD_VIRTUAL_DETECTORS_IP8) hFarBwdDefineDetectorsIP8(g4Reco);
+./BILLTESTANALYSIS/macros/common/G4_TrackingSupport.C:  virtual ~ServiceProperties(){};
+./BILLTESTANALYSIS/macros/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS = false;
+./BILLTESTANALYSIS/macros/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP6 = false;
+./BILLTESTANALYSIS/macros/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP8 = false;
+./BILLTESTANALYSIS/macros/common/G4_hFarFwdBeamLine_EIC.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 |= Enable::HFARFWD_VIRTUAL_DETECTORS and Enable::IP6;
+./BILLTESTANALYSIS/macros/common/G4_hFarFwdBeamLine_EIC.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8 |= Enable::HFARFWD_VIRTUAL_DETECTORS and Enable::IP8;
+./BILLTESTANALYSIS/macros/common/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./BILLTESTANALYSIS/macros/common/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./BILLTESTANALYSIS/macros/common/G4_DSTReader_EICDetector.C:    if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 or Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./BILLTESTANALYSIS/macros/common/G4_hFarBwdBeamLine_EIC.C:  bool HFARBWD_VIRTUAL_DETECTORS = false;
+./BILLTESTANALYSIS/macros/common/G4_hFarBwdBeamLine_EIC.C:  bool HFARBWD_VIRTUAL_DETECTORS_IP6 = false;
+./BILLTESTANALYSIS/macros/common/G4_hFarBwdBeamLine_EIC.C:  bool HFARBWD_VIRTUAL_DETECTORS_IP8 = false;
+./BILLTESTANALYSIS/macros/common/G4_hFarBwdBeamLine_EIC.C:  Enable::HFARBWD_VIRTUAL_DETECTORS_IP6 |= Enable::HFARBWD_VIRTUAL_DETECTORS and Enable::IP6;
+./BILLTESTANALYSIS/macros/common/G4_hFarBwdBeamLine_EIC.C:  Enable::HFARBWD_VIRTUAL_DETECTORS_IP8 |= Enable::HFARBWD_VIRTUAL_DETECTORS and Enable::IP8;
+./BILLTESTANALYSIS/macros/common/G4_hFarBwdBeamLine_EIC.C://  if (Enable::HFARBWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARBWD_VIRTUAL_DETECTORS_IP8)
+./BILLTESTANALYSIS/macros/common/G4_hFarBwdBeamLine_EIC.C:  if (Enable::HFARBWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARBWD_VIRTUAL_DETECTORS_IP8)
+./BILLTESTANALYSIS/macros/common/G4_hFarBwdBeamLine_EIC.C:  if (Enable::HFARBWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARBWD_VIRTUAL_DETECTORS_IP8)
+./BILLTESTANALYSIS/diff_tagg_ana.h:  virtual ~diff_tagg_ana();
+./testing4Singularity/eicGenTutorials/analysis/compiled/PadMxN.h:    TVirtualPad *toppad;
+./testing4Singularity/eicGenTutorials/README.md:If you are working on the [Singularity container](https://github.com/ECCE-EIC/Singularity) or [Virtual Box](https://github.com/eic/Singularity/blob/master/VirtualBox.md), do the following:
+./testing4Singularity/eicGenTutorials/README.md:> ./singularity_shell.sh (Virtual Box)
+./testing4Singularity/eicGenTutorials/README.md:N.B. The above links for the Singularity container and Virtual Box instruct the user to source the Fun4All environment after entering the container (e.g. running <ins>source setup.sh</ins> right after entering the container in the Virtual Box). You should not do this if you want to run the above generators and eic-smear only. Just source the SDCC_setup.sh script as described above.
+./testing4Singularity/eicGenTutorials/detectors/detector_perfect.C:#include "eicsmear/erhic/VirtualParticle.h"
+./testing4Singularity/eicGenTutorials/detectors/detector_central.C:#include "eicsmear/erhic/VirtualParticle.h"
+Binary file ./treeToHist_C.so matches
+./simulations/fun4all_eicmacros-CORE/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS = false;
+./simulations/fun4all_eicmacros-CORE/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP6 = false;
+./simulations/fun4all_eicmacros-CORE/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP8 = false;
+./simulations/fun4all_eicmacros-CORE/common/G4_hFarFwdBeamLine_EIC.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 |= Enable::HFARFWD_VIRTUAL_DETECTORS and Enable::IP6;
+./simulations/fun4all_eicmacros-CORE/common/G4_hFarFwdBeamLine_EIC.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8 |= Enable::HFARFWD_VIRTUAL_DETECTORS and Enable::IP8;
+./simulations/fun4all_eicmacros-CORE/common/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./simulations/fun4all_eicmacros-CORE/common/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./simulations/fun4all_eicmacros-CORE/detectors/EICDetector/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+./simulations/fun4all_eicmacros-CORE/detectors/EICDetector/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+./simulations/fun4all_eicmacros-CORE/detectors/EICDetector/Fun4All_G4_EICDetector.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./simulations/fun4all_eicmacros-CORE/detectors/EICDetector/Fun4All_G4_EICDetector.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./simulations/fun4all_eicmacros-CORE/detectors/Modular/G4Setup_ModularDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+./simulations/fun4all_eicmacros-CORE/detectors/Modular/G4Setup_ModularDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+./simulations/fun4all_eicmacros-CORE/detectors/Modular/Fun4All_G4_FullDetectorModular.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = false;
+./simulations/fun4all_eicmacros-CORE/detectors/Modular/Fun4All_G4_FullDetectorModular.C:    Enable::HFARFWD_VIRTUAL_DETECTORS = false;
+./simulations/fun4all_eicmacros-CORE/detectors/Modular/Fun4All_G4_FullDetectorModular.C:    Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./simulations/fun4all_eicmacros-CORE/detectors/CORE/Fun4All_G4_CORE.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./simulations/fun4all_eicmacros-CORE/detectors/CORE/Fun4All_G4_CORE.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./simulations/fun4all_eicmacros/detectors/Modular/G4Setup_ModularDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+./simulations/fun4all_eicmacros/detectors/Modular/G4Setup_ModularDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+./simulations/fun4all_eicmacros/detectors/Modular/Fun4All_G4_FullDetectorModular.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = false;
+./simulations/fun4all_eicmacros/detectors/Modular/Fun4All_G4_FullDetectorModular.C:    Enable::HFARFWD_VIRTUAL_DETECTORS = false;
+./simulations/fun4all_eicmacros/detectors/Modular/Fun4All_G4_FullDetectorModular.C:    Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./simulations/fun4all_eicmacros/detectors/EICDetector/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+./simulations/fun4all_eicmacros/detectors/EICDetector/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+./simulations/fun4all_eicmacros/detectors/EICDetector/Fun4All_G4_EICDetector.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./simulations/fun4all_eicmacros/detectors/EICDetector/Fun4All_G4_EICDetector.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./simulations/fun4all_eicmacros/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS = false;
+./simulations/fun4all_eicmacros/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP6 = false;
+./simulations/fun4all_eicmacros/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP8 = false;
+./simulations/fun4all_eicmacros/common/G4_hFarFwdBeamLine_EIC.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 |= Enable::HFARFWD_VIRTUAL_DETECTORS and Enable::IP6;
+./simulations/fun4all_eicmacros/common/G4_hFarFwdBeamLine_EIC.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8 |= Enable::HFARFWD_VIRTUAL_DETECTORS and Enable::IP8;
+./simulations/fun4all_eicmacros/common/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./simulations/fun4all_eicmacros/common/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./treeToHist_C.d:./treeToHist_C.so: /u/apps/root/5.34.36/root/include/TVirtualTreePlayer.h
+./treeToHist_C.d:./treeToHist_C.so: /u/apps/root/5.34.36/root/include/TVirtualPad.h
+./treeToHist_C.d:./treeToHist_C.so: /u/apps/root/5.34.36/root/include/TVirtualX.h
+./CORE_TEST/detectors/CORE/Fun4All_G4_CORE_OG.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./CORE_TEST/detectors/CORE/Fun4All_G4_CORE_OG.C:////  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./CORE_TEST/detectors/CORE/Fun4All_G4_CORE_OG.C:////  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./CORE_TEST/detectors/CORE/G4Setup_CORE.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+./CORE_TEST/detectors/CORE/G4Setup_CORE.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+./CORE_TEST/detectors/CORE/Fun4All_G4_CORE.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./CORE_TEST/detectors/CORE/Fun4All_G4_CORE.C:////  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./CORE_TEST/detectors/CORE/Fun4All_G4_CORE.C:////  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./CORE_TEST/detectors/CORE/OG_Fun4All_G4_CORE.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./CORE_TEST/detectors/CORE/OG_Fun4All_G4_CORE.C:////  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./CORE_TEST/detectors/CORE/OG_Fun4All_G4_CORE.C:////  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./CORE_TEST/detectors/CORE/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS = false;
+./CORE_TEST/detectors/CORE/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP6 = false;
+./CORE_TEST/detectors/CORE/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP8 = false;
+./CORE_TEST/detectors/CORE/G4_hFarFwdBeamLine_EIC.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 |= Enable::HFARFWD_VIRTUAL_DETECTORS and Enable::IP6;
+./CORE_TEST/detectors/CORE/G4_hFarFwdBeamLine_EIC.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8 |= Enable::HFARFWD_VIRTUAL_DETECTORS and Enable::IP8;
+./CORE_TEST/detectors/CORE/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./CORE_TEST/detectors/CORE/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./CORE_TEST/detectors/CORE/Fun4All_G4_CORE_C.d:./Fun4All_G4_CORE_C.so: /cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualIsAProxy.h
+./CORE_TEST/detectors/CORE/Fun4All_G4_CORE_C.d:./Fun4All_G4_CORE_C.so: /cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualRWMutex.h
+./CORE_TEST/detectors/CORE/Fun4All_G4_CORE_C.d:./Fun4All_G4_CORE_C.so: /cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualMutex.h
+./CORE_TEST/detectors/CORE/Fun4All_G4_CORE_C.d:./Fun4All_G4_CORE_C.so: /cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/opt/fun4all/core/root-6.22.02/include/TVirtualQConnection.h
+./CORE_TEST/detectors/EICDetector/Fun4All_G4_EICDetector.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6=true;
+./CORE_TEST/detectors/EICDetector/Fun4All_G4_EICDetector.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8=false;
+./CORE_TEST/detectors/EICDetector/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+./CORE_TEST/detectors/EICDetector/G4Setup_EICDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+./CORE_TEST/detectors/Modular/G4Setup_ModularDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6) hFarFwdDefineDetectorsIP6(g4Reco);
+./CORE_TEST/detectors/Modular/G4Setup_ModularDetector.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP8) hFarFwdDefineDetectorsIP8(g4Reco);
+./CORE_TEST/detectors/Modular/Fun4All_G4_FullDetectorModular.C:  Enable::HFARFWD_VIRTUAL_DETECTORS = false;
+./CORE_TEST/detectors/Modular/Fun4All_G4_FullDetectorModular.C:    Enable::HFARFWD_VIRTUAL_DETECTORS = false;
+./CORE_TEST/detectors/Modular/Fun4All_G4_FullDetectorModular.C:    Enable::HFARFWD_VIRTUAL_DETECTORS = true;
+./CORE_TEST/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS = false;
+./CORE_TEST/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP6 = false;
+./CORE_TEST/common/G4_hFarFwdBeamLine_EIC.C:  bool HFARFWD_VIRTUAL_DETECTORS_IP8 = false;
+./CORE_TEST/common/G4_hFarFwdBeamLine_EIC.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 |= Enable::HFARFWD_VIRTUAL_DETECTORS and Enable::IP6;
+./CORE_TEST/common/G4_hFarFwdBeamLine_EIC.C:  Enable::HFARFWD_VIRTUAL_DETECTORS_IP8 |= Enable::HFARFWD_VIRTUAL_DETECTORS and Enable::IP8;
+./CORE_TEST/common/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)
+./CORE_TEST/common/G4_hFarFwdBeamLine_EIC.C:  if (Enable::HFARFWD_VIRTUAL_DETECTORS_IP6 && Enable::HFARFWD_VIRTUAL_DETECTORS_IP8)

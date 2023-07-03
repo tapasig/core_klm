@@ -14,6 +14,7 @@
 #include <G4_Input.C>
 #include <G4_Jets.C>
 #include <G4_Production.C>
+#include <G4_User.C>
 
 #include <fun4all/Fun4AllDstOutputManager.h>
 #include <fun4all/Fun4AllOutputManager.h>
@@ -21,11 +22,18 @@
 
 #include <phool/recoConsts.h>
 
+#include <G4_BlackHole.C>
+
+#include <g4detectors/PHG4CylinderSubsystem.h>
+#include <g4main/PHG4Reco.h>
+
 R__LOAD_LIBRARY(libfun4all.so)
+R__LOAD_LIBRARY(libg4detectors.so)
 
 int Fun4All_G4_CORE(
-    const int nEvents = 1,
-    const string &inputFile = "/sphenix/data/data02/review_2017-08-02/single_particle/spacal2d/fieldmap/G4Hits_sPHENIX_e-_eta0_8GeV-0002.root",
+    const int nEvents = 1, //5000,
+    const string &inputFile = "/home/niting/work_eic1/BILLTESTANALYSIS/bill_diff_tagg_script/sample_data/eic_input_DEMPGen_Pion0_no_decay_validation.root",
+    // const string &inputFile = "/sphenix/data/data02/review_2017-08-02/single_particle/spacal2d/fieldmap/G4Hits_sPHENIX_e-_eta0_8GeV-0002.root",
     const string &outputFile = "G4COREDetector.root",
     const string &embed_input_file = "https://www.phenix.bnl.gov/WWW/publish/phnxbld/sPHENIX/files/sPHENIX_G4Hits_sHijing_9-11fm_00000_00010.root",
     const int skip = 0,
@@ -88,7 +96,7 @@ int Fun4All_G4_CORE(
   // Input::SIMPLE_VERBOSITY = 1;
 
   // Particle gun (same particles in always the same direction)
-  //  Input::GUN = true;
+  // Input::GUN = true;
   //  Input::GUN_NUMBER = 3; // if you need 3 of them
   Input::GUN_VERBOSITY = 0;
 
@@ -100,7 +108,7 @@ int Fun4All_G4_CORE(
   // And/Or read generated particles from file
 
   // eic-smear output
-  //  Input::READEIC = true;
+  // Input::READEIC = true;
   INPUTREADEIC::filename = inputFile;
 
   // HepMC2 files
@@ -122,7 +130,7 @@ int Fun4All_G4_CORE(
   // add the settings for other with [1], next with [2]...
   if (Input::SIMPLE)
   {
-    INPUTGENERATOR::SimpleEventGenerator[0]->add_particles("mu-",1);
+    INPUTGENERATOR::SimpleEventGenerator[0]->add_particles("mu+",1);
     if (Input::HEPMC || Input::EMBED)
     {
       INPUTGENERATOR::SimpleEventGenerator[0]->set_reuse_existing_vertex(true);
@@ -136,9 +144,9 @@ int Fun4All_G4_CORE(
       INPUTGENERATOR::SimpleEventGenerator[0]->set_vertex_distribution_mean(0., 0., 0.);
       INPUTGENERATOR::SimpleEventGenerator[0]->set_vertex_distribution_width(0., 0., 0.);
     }
-    INPUTGENERATOR::SimpleEventGenerator[0]->set_eta_range(-4.2, 4.2);
-    INPUTGENERATOR::SimpleEventGenerator[0]->set_phi_range(-M_PI, M_PI);
-    INPUTGENERATOR::SimpleEventGenerator[0]->set_p_range(0.,40.);
+    INPUTGENERATOR::SimpleEventGenerator[0]->set_eta_range(0., 0.);
+    INPUTGENERATOR::SimpleEventGenerator[0]->set_phi_range(M_PI/2, M_PI/2);
+    INPUTGENERATOR::SimpleEventGenerator[0]->set_p_range(0., 10.);
   }
   // Upsilons
   // if you run more than one of these Input::UPSILON_NUMBER > 1
@@ -156,7 +164,11 @@ int Fun4All_G4_CORE(
   // add the settings for other with [1], next with [2]...
   if (Input::GUN)
   {
-    INPUTGENERATOR::Gun[0]->AddParticle("pi-", 0, 1, 0);
+    
+    float theta = 30e-3;
+
+    INPUTGENERATOR::Gun[0]->AddParticle("pi0", 0, 1, 0);
+    INPUTGENERATOR::Gun[0]->set_mom(sin(theta)*35, 0, cos(theta)*35);
     INPUTGENERATOR::Gun[0]->set_vtx(0, 0, 0);
   }
   // pythia6
@@ -177,16 +189,16 @@ int Fun4All_G4_CORE(
   // Write the DST
   //======================
 
-  // Enable::DSTOUT = true;
+  Enable::DSTOUT = true;
   DstOut::OutputDir = outdir;
   DstOut::OutputFile = outputFile;
-  Enable::DSTOUT_COMPRESS = false;  // Compress DST files
+  Enable::DSTOUT_COMPRESS = true;  // Compress DST files
 
   //Option to convert DST to human command readable TTree for quick poke around the outputs
   //  Enable::DSTREADER = true;
 
   // turn the display on (default off)
-  Enable::DISPLAY = true;
+  // Enable::DISPLAY = true;
 
   //======================
   // What to run
@@ -311,13 +323,19 @@ int Fun4All_G4_CORE(
 
   Enable::BLACKHOLE = true;
   //Enable::BLACKHOLE_SAVEHITS = false; // turn off saving of bh hits
-  //BlackHoleGeometry::visible = true;
+  Enable::BLACKHOLE_SAVEHITS = true; // turn off saving of bh hits
+  // BlackHoleGeometry::visible = true;
+  
+  Enable::USER = true;
+
+  //if (Enable::BLACKHOLE) BlackHoleInit();
 
   //---------------
   // World Settings
   //---------------
   //  G4WORLD::PhysicsList = "QGSP_BERT"; //FTFP_BERT_HP best for calo
   //  G4WORLD::WorldMaterial = "G4_AIR"; // set to G4_GALACTIC for material scans
+  G4WORLD::WorldMaterial = "G4_Galactic"; // set to G4_GALACTIC for material scans
 
   //---------------
   // Magnet Settings
@@ -433,36 +451,39 @@ int Fun4All_G4_CORE(
 
   if (Enable::FWDJETS) Jet_FwdReco();
 
-  string outputroot = outputFile;
-  string remove_this = ".root";
-  size_t pos = outputroot.find(remove_this);
-  if (pos != string::npos)
-  {
-    outputroot.erase(pos, remove_this.length());
-  }
+//  string outputroot = outputFile;
+//  string remove_this = ".root";
+//  size_t pos = outputroot.find(remove_this);
+//  if (pos != string::npos)
+//  {
+//    outputroot.erase(pos, remove_this.length());
+//  }
 
 ////  if (Enable::DSTREADER) G4DSTreader_LBLDetector(outputroot + "_DSTReader.root");
 
   //----------------------
   // Simulation evaluation
   //----------------------
-  if (Enable::TRACKING_EVAL) Tracking_Eval(outputroot + "_g4tracking_eval.root");
+//  if (Enable::TRACKING_EVAL) Tracking_Eval(outputroot + "_g4tracking_eval.root");
 
-  if (Enable::CEMC_EVAL) CEMC_Eval(outputroot + "_g4cemc_eval.root");
+//  if (Enable::CEMC_EVAL) CEMC_Eval(outputroot + "_g4cemc_eval.root");
 
-  if (Enable::HCALIN_EVAL) HCALInner_Eval(outputroot + "_g4hcalin_eval.root");
+//  if (Enable::HCALIN_EVAL) HCALInner_Eval(outputroot + "_g4hcalin_eval.root");
 
-  if (Enable::HCALOUT_EVAL) HCALOuter_Eval(outputroot + "_g4hcalout_eval.root");
+//  if (Enable::HCALOUT_EVAL) HCALOuter_Eval(outputroot + "_g4hcalout_eval.root");
 
-  if (Enable::FEMC_EVAL) FEMC_Eval(outputroot + "_g4femc_eval.root");
+//  if (Enable::FEMC_EVAL) FEMC_Eval(outputroot + "_g4femc_eval.root");
 
-  if (Enable::FHCAL_EVAL) FHCAL_Eval(outputroot + "_g4fhcal_eval.root");
+//  if (Enable::FHCAL_EVAL) FHCAL_Eval(outputroot + "_g4fhcal_eval.root");
 
-  if (Enable::EEMC_EVAL) EEMC_Eval(outputroot + "_g4eemc_eval.root");
+//  if (Enable::EEMC_EVAL) EEMC_Eval(outputroot + "_g4eemc_eval.root");
 
-  if (Enable::JETS_EVAL) Jet_Eval(outputroot + "_g4jet_eval.root");
+//  if (Enable::JETS_EVAL) Jet_Eval(outputroot + "_g4jet_eval.root");
 
-  if (Enable::FWDJETS_EVAL) Jet_FwdEval(outputroot + "_g4fwdjet_eval.root");
+//  if (Enable::FWDJETS_EVAL) Jet_FwdEval(outputroot + "_g4fwdjet_eval.root");
+
+
+  if (Enable::USER) UserAnalysisInit();
 
   //--------------
   // Set up Input Managers
