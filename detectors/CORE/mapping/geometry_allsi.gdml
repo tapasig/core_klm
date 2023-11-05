@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+  <define>
+    <position name="SVTX_00x6ae3f20inWorldpos" x="0" y="0" z="0" unit="cm"/>
+    <position name="SVTX_10x6ae3da0inWorldpos" x="0" y="0" z="0" unit="cm"/>
+    <position name="BARR_00x6b01410inWorldpos" x="0" y="0" z="0" unit="cm"/>
+    <position name="BARR_10x6ae3de0inWorldpos" x="0" y="0" z="0" unit="cm"/>
+    <position name="BARR_20x6b024e0inWorldpos" x="0" y="0" z="0" unit="cm"/>
+    <position name="BARR_30x6b026d0inWorldpos" x="0" y="0" z="0" unit="cm"/>
+    <position name="FBVS_00x6b0aaf0inWorldpos" x="0" y="0" z="-121" unit="cm"/>
+    <position name="FBVS_10x6b0ace0inWorldpos" x="0" y="0" z="-97" unit="cm"/>
+    <position name="FBVS_20x6ab93f0inWorldpos" x="0" y="0" z="-73" unit="cm"/>
+    <position name="FBVS_30x6ae3fa0inWorldpos" x="0" y="0" z="-49" unit="cm"/>
+    <position name="FBVS_40x6ad3d10inWorldpos" x="0" y="0" z="-25" unit="cm"/>
+    <position name="FBVS_50x6ad3f00inWorldpos" x="0" y="0" z="25" unit="cm"/>
+    <position name="FBVS_60x6b16d30inWorldpos" x="0" y="0" z="49" unit="cm"/>
+    <position name="FBVS_70x6b16f50inWorldpos" x="0" y="0" z="73" unit="cm"/>
+    <position name="FBVS_80x6ab6ef0inWorldpos" x="0" y="0" z="97" unit="cm"/>
+    <position name="FBVS_90x6ab7110inWorldpos" x="0" y="0" z="121" unit="cm"/>
+    <position name="AllSi_Al_support_0x6ad6530inWorldpos" x="0" y="0" z="0" unit="cm"/>
+    <position name="AllSi_Al_support_0x6af9680inWorldpos" x="0" y="0" z="0" unit="cm"/>
+  </define>
+  <materials>
+    <element name="SILICON_elm" formula="SI" Z="14">
+      <atom unit="g/mole" value="28.0855"/>
+    </element>
+    <material name="G4_Si">
+      <D unit="g/cm3" value="2.3300000000000001"/>
+      <fraction n="1" ref="SILICON_elm"/>
+    </material>
+    <material name="G4_Al" Z="13">
+      <D unit="g/cm3" value="2.6989999999999998"/>
+      <atom unit="g/mole" value="26.9815"/>
+    </material>
+    <element name="ARGON_elm" formula="AR" Z="18">
+      <atom unit="g/mole" value="39.948"/>
+    </element>
+    <element name="CARBON_elm" formula="C" Z="6">
+      <atom unit="g/mole" value="12.0107"/>
+    </element>
+    <element name="NITROGEN_elm" formula="N" Z="7">
+      <atom unit="g/mole" value="14.006740000000001"/>
+    </element>
+    <element name="OXYGEN_elm" formula="O" Z="8">
+      <atom unit="g/mole" value="15.9994"/>
+    </element>
+    <material name="G4_AIR">
+      <D unit="g/cm3" value="0.0012047900000000001"/>
+      <fraction n="0.012827012687921524" ref="ARGON_elm"/>
+      <fraction n="0.0001240001292899251" ref="CARBON_elm"/>
+      <fraction n="0.75526773929595947" ref="NITROGEN_elm"/>
+      <fraction n="0.23178122937679291" ref="OXYGEN_elm"/>
+    </material>
+  </materials>
+  <solids>
+    <tube name="World" rmin="0" rmax="500" z="1000" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="SVTX_00x1" rmin="3.3000000000000003" rmax="3.3046850000000001" z="30" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="SVTX_10x1" rmin="5.7000000000000002" rmax="5.7046850000000004" z="30" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="BARR_00x1" rmin="21" rmax="21.051535000000001" z="54" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="BARR_10x1" rmin="22.680000000000003" rmax="22.731535000000001" z="60" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="BARR_20x1" rmin="39.300000000000004" rmax="39.351535000000005" z="105" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="BARR_30x1" rmin="43.230000000000004" rmax="43.281535000000005" z="114" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="FBVS_00x1" rmin="4.4000000000000004" rmax="43.230000000000004" z="0.022488000000000001" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="FBVS_10x1" rmin="3.6871063999999998" rmax="43.230000000000004" z="0.022488000000000001" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="FBVS_20x1" rmin="3.1800000000000002" rmax="43.230000000000004" z="0.022488000000000001" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="FBVS_30x1" rmin="3.1800000000000002" rmax="36.260000000000005" z="0.022488000000000001" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="FBVS_40x1" rmin="3.1800000000000002" rmax="18.5" z="0.022488000000000001" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="FBVS_50x1" rmin="3.1800000000000002" rmax="18.5" z="0.022488000000000001" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="FBVS_60x1" rmin="3.1800000000000002" rmax="36.260000000000005" z="0.022488000000000001" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="FBVS_70x1" rmin="3.4877785299999999" rmax="43.230000000000004" z="0.022488000000000001" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="FBVS_80x1" rmin="4.6938891700000003" rmax="43.230000000000004" z="0.022488000000000001" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <tube name="FBVS_90x1" rmin="5.8999998100000006" rmax="43.230000000000004" z="0.022488000000000001" startphi="0" deltaphi="360" aunit="deg" lunit="cm"/>
+    <polycone name="Al_pos_z" startphi="0" deltaphi="360" aunit="deg" lunit="cm">
+      <zplane z="20" rmin="14.799204846264301" rmax="15.299204846264301"/>
+      <zplane z="58.422057737665902" rmin="43.230000000000004" rmax="43.730000000000004"/>
+      <zplane z="121" rmin="43.230000000000004" rmax="43.730000000000004"/>
+    </polycone>
+    <polycone name="Al_neg_z" startphi="0" deltaphi="360" aunit="deg" lunit="cm">
+      <zplane z="-121" rmin="43.230000000000004" rmax="43.730000000000004"/>
+      <zplane z="-58.422057737665902" rmin="43.230000000000004" rmax="43.730000000000004"/>
+      <zplane z="-20" rmin="14.799204846264301" rmax="15.299204846264301"/>
+    </polycone>
+  </solids>
+  <structure>
+    <volume name="SVTX_0">
+      <materialref ref="G4_Si"/>
+      <solidref ref="SVTX_00x1"/>
+    </volume>
+    <volume name="SVTX_1">
+      <materialref ref="G4_Si"/>
+      <solidref ref="SVTX_10x1"/>
+    </volume>
+    <volume name="BARR_0">
+      <materialref ref="G4_Si"/>
+      <solidref ref="BARR_00x1"/>
+    </volume>
+    <volume name="BARR_1">
+      <materialref ref="G4_Si"/>
+      <solidref ref="BARR_10x1"/>
+    </volume>
+    <volume name="BARR_2">
+      <materialref ref="G4_Si"/>
+      <solidref ref="BARR_20x1"/>
+    </volume>
+    <volume name="BARR_3">
+      <materialref ref="G4_Si"/>
+      <solidref ref="BARR_30x1"/>
+    </volume>
+    <volume name="FBVS_0">
+      <materialref ref="G4_Si"/>
+      <solidref ref="FBVS_00x1"/>
+    </volume>
+    <volume name="FBVS_1">
+      <materialref ref="G4_Si"/>
+      <solidref ref="FBVS_10x1"/>
+    </volume>
+    <volume name="FBVS_2">
+      <materialref ref="G4_Si"/>
+      <solidref ref="FBVS_20x1"/>
+    </volume>
+    <volume name="FBVS_3">
+      <materialref ref="G4_Si"/>
+      <solidref ref="FBVS_30x1"/>
+    </volume>
+    <volume name="FBVS_4">
+      <materialref ref="G4_Si"/>
+      <solidref ref="FBVS_40x1"/>
+    </volume>
+    <volume name="FBVS_5">
+      <materialref ref="G4_Si"/>
+      <solidref ref="FBVS_50x1"/>
+    </volume>
+    <volume name="FBVS_6">
+      <materialref ref="G4_Si"/>
+      <solidref ref="FBVS_60x1"/>
+    </volume>
+    <volume name="FBVS_7">
+      <materialref ref="G4_Si"/>
+      <solidref ref="FBVS_70x1"/>
+    </volume>
+    <volume name="FBVS_8">
+      <materialref ref="G4_Si"/>
+      <solidref ref="FBVS_80x1"/>
+    </volume>
+    <volume name="FBVS_9">
+      <materialref ref="G4_Si"/>
+      <solidref ref="FBVS_90x1"/>
+    </volume>
+    <volume name="AllSi_Al_support_Logical">
+      <materialref ref="G4_Al"/>
+      <solidref ref="Al_pos_z"/>
+    </volume>
+    <volume name="AllSi_Al_support_Logical0x1">
+      <materialref ref="G4_Al"/>
+      <solidref ref="Al_neg_z"/>
+    </volume>
+    <volume name="World">
+      <materialref ref="G4_AIR"/>
+      <solidref ref="World"/>
+      <physvol name="SVTX_00x6ae3f20" copynumber="0">
+        <volumeref ref="SVTX_0"/>
+        <positionref ref="SVTX_00x6ae3f20inWorldpos"/>
+      </physvol>
+      <physvol name="SVTX_10x6ae3da0" copynumber="0">
+        <volumeref ref="SVTX_1"/>
+        <positionref ref="SVTX_10x6ae3da0inWorldpos"/>
+      </physvol>
+      <physvol name="BARR_00x6b01410" copynumber="0">
+        <volumeref ref="BARR_0"/>
+        <positionref ref="BARR_00x6b01410inWorldpos"/>
+      </physvol>
+      <physvol name="BARR_10x6ae3de0" copynumber="0">
+        <volumeref ref="BARR_1"/>
+        <positionref ref="BARR_10x6ae3de0inWorldpos"/>
+      </physvol>
+      <physvol name="BARR_20x6b024e0" copynumber="0">
+        <volumeref ref="BARR_2"/>
+        <positionref ref="BARR_20x6b024e0inWorldpos"/>
+      </physvol>
+      <physvol name="BARR_30x6b026d0" copynumber="0">
+        <volumeref ref="BARR_3"/>
+        <positionref ref="BARR_30x6b026d0inWorldpos"/>
+      </physvol>
+      <physvol name="FBVS_00x6b0aaf0" copynumber="0">
+        <volumeref ref="FBVS_0"/>
+        <positionref ref="FBVS_00x6b0aaf0inWorldpos"/>
+      </physvol>
+      <physvol name="FBVS_10x6b0ace0" copynumber="0">
+        <volumeref ref="FBVS_1"/>
+        <positionref ref="FBVS_10x6b0ace0inWorldpos"/>
+      </physvol>
+      <physvol name="FBVS_20x6ab93f0" copynumber="0">
+        <volumeref ref="FBVS_2"/>
+        <positionref ref="FBVS_20x6ab93f0inWorldpos"/>
+      </physvol>
+      <physvol name="FBVS_30x6ae3fa0" copynumber="0">
+        <volumeref ref="FBVS_3"/>
+        <positionref ref="FBVS_30x6ae3fa0inWorldpos"/>
+      </physvol>
+      <physvol name="FBVS_40x6ad3d10" copynumber="0">
+        <volumeref ref="FBVS_4"/>
+        <positionref ref="FBVS_40x6ad3d10inWorldpos"/>
+      </physvol>
+      <physvol name="FBVS_50x6ad3f00" copynumber="0">
+        <volumeref ref="FBVS_5"/>
+        <positionref ref="FBVS_50x6ad3f00inWorldpos"/>
+      </physvol>
+      <physvol name="FBVS_60x6b16d30" copynumber="0">
+        <volumeref ref="FBVS_6"/>
+        <positionref ref="FBVS_60x6b16d30inWorldpos"/>
+      </physvol>
+      <physvol name="FBVS_70x6b16f50" copynumber="0">
+        <volumeref ref="FBVS_7"/>
+        <positionref ref="FBVS_70x6b16f50inWorldpos"/>
+      </physvol>
+      <physvol name="FBVS_80x6ab6ef0" copynumber="0">
+        <volumeref ref="FBVS_8"/>
+        <positionref ref="FBVS_80x6ab6ef0inWorldpos"/>
+      </physvol>
+      <physvol name="FBVS_90x6ab7110" copynumber="0">
+        <volumeref ref="FBVS_9"/>
+        <positionref ref="FBVS_90x6ab7110inWorldpos"/>
+      </physvol>
+      <physvol name="AllSi_Al_support_0x6ad6530" copynumber="0">
+        <volumeref ref="AllSi_Al_support_Logical"/>
+        <positionref ref="AllSi_Al_support_0x6ad6530inWorldpos"/>
+      </physvol>
+      <physvol name="AllSi_Al_support_0x6af9680" copynumber="0">
+        <volumeref ref="AllSi_Al_support_Logical0x1"/>
+        <positionref ref="AllSi_Al_support_0x6af9680inWorldpos"/>
+      </physvol>
+    </volume>
+  </structure>
+  <setup name="default" version="1.0">
+    <world ref="World"/>
+  </setup>
+</gdml>

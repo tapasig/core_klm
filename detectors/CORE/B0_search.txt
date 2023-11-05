@@ -1,0 +1,621 @@
+./G4Setup_CORE.C:#include <eicg4b0/EICG4B0Subsystem.h>
+./G4Setup_CORE.C:#include <eicg4b0ecal/EICG4B0ECALSubsystem.h>
+Binary file ./out.root matches
+./GlobalVariables.C://For B0 Tracking
+./GlobalVariables.C:class B0TrackFastSim;
+./GlobalVariables.C:namespace B0TRACKING
+./GlobalVariables.C:  B0TrackFastSim * FastKalmanFilter(nullptr);
+./GlobalVariables.C:  B0TrackFastSim * FastKalmanFilterB0Track(nullptr);
+./GlobalVariables.C:  std::set<std::string> B0ProjectionNames;
+./G4_hFarFwdBeamLine_EIC.C:#include <eicg4b0/EICG4B0Subsystem.h>
+./G4_hFarFwdBeamLine_EIC.C:#include <eicg4b0ecal/EICG4B0ECALSubsystem.h>
+./G4_hFarFwdBeamLine_EIC.C:  bool B0_DISABLE_HITPLANE = false;
+./G4_hFarFwdBeamLine_EIC.C:  bool B0_FULLHITPLANE = false;
+./G4_hFarFwdBeamLine_EIC.C:  bool B0_VAR_PIPE_HOLE = false;
+./G4_hFarFwdBeamLine_EIC.C:  bool B0_CIRCLE_PIPE_HOLE = false;
+./G4_hFarFwdBeamLine_EIC.C:  bool B0ECALTOWERS = true; //Set to 'false' for nice PackMan views. Set 'true' for physics studies.
+./G4_hFarFwdBeamLine_EIC.C:  bool B0TRACKING = true; //Set to 'false' for nice PackMan views. Set 'true' for physics studies.
+./G4_hFarFwdBeamLine_EIC.C:  bool B0ECAL = true; //Set to 'false' for nice PackMan views. Set 'true' for physics studies.
+./G4_hFarFwdBeamLine_EIC.C:  BeamLineMagnetSubsystem *B0Magnet = (nullptr);
+./G4_hFarFwdBeamLine_EIC.C:  double B0Magnet_x = NAN;
+./G4_hFarFwdBeamLine_EIC.C:  double B0Magnet_y = NAN;
+./G4_hFarFwdBeamLine_EIC.C:  double B0Magnet_z = NAN;
+./G4_hFarFwdBeamLine_EIC.C:            // rag the B0 magnet
+./G4_hFarFwdBeamLine_EIC.C:	    {	//To tell the B0 Calorimeter the global coordinates of the B0 Magnet
+./G4_hFarFwdBeamLine_EIC.C:            	hFarFwdBeamLine::B0Magnet = bl;
+./G4_hFarFwdBeamLine_EIC.C:		hFarFwdBeamLine::B0Magnet_x = PosFlip(x);
+./G4_hFarFwdBeamLine_EIC.C:		hFarFwdBeamLine::B0Magnet_y = y;
+./G4_hFarFwdBeamLine_EIC.C:		hFarFwdBeamLine::B0Magnet_z = z;
+./G4_hFarFwdBeamLine_EIC.C:   // B0 implementation
+./G4_hFarFwdBeamLine_EIC.C:        double b0tr_z = 0; //Subsystem position relative to B0 magnet (for iterator)
+./G4_hFarFwdBeamLine_EIC.C:        const int b0DetNr = 4;
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Mag_zCent = 640;
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Mag_zLen = 120;
+./G4_hFarFwdBeamLine_EIC.C:	const double b0tr[4]={10,40,70,100};
+./G4_hFarFwdBeamLine_EIC.C://	const double b0tr[4]={10,45,80,115}; //Tracker layers when no ECAL
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Cu_zLen = .2; //B0 dead material length
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Si_zLen = .1; //B0 Si length
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Ecal_zLen = 10; //B0 Ecal length
+./G4_hFarFwdBeamLine_EIC.C:        const double b0_radius = 19.0; //outer radius of B0-detector
+./G4_hFarFwdBeamLine_EIC.C:        const double b0_magradius = 20.0; //inner radius of B0-magnet
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Ecal_z = 48;//B0 ECal position (relative to the B0-magnet)
+./G4_hFarFwdBeamLine_EIC.C:    if (Enable::B0_DISABLE_HITPLANE) {
+./G4_hFarFwdBeamLine_EIC.C://	const double b0tr[4]={10,45,80,115};
+./G4_hFarFwdBeamLine_EIC.C:	//const double b0tr[4]={0,30,60,90};
+./G4_hFarFwdBeamLine_EIC.C:	//const double b0tr[5]={0,25,50,75,100};
+./G4_hFarFwdBeamLine_EIC.C:	cout << "Realistic B0"<<endl;
+./G4_hFarFwdBeamLine_EIC.C:        for (int i = 0; i < b0DetNr; i++)
+./G4_hFarFwdBeamLine_EIC.C:	if (Enable::B0_VAR_PIPE_HOLE){
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole = b0tr[i]*cross_angle;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x = - cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[i]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:	else if (Enable::B0_CIRCLE_PIPE_HOLE){
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole_r = pipe_hole_r + b0tr[b0DetNr-1]*cross_angle/2;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x = - cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[b0DetNr-1]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole = b0tr[b0DetNr-1]*cross_angle;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x = - cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[b0DetNr-1]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:	cout <<"Starting B0 Tracker layer "<<i+1<<endl;
+./G4_hFarFwdBeamLine_EIC.C:	  b0tr_z = b0tr[i] - b0Mag_zLen / 2;
+./G4_hFarFwdBeamLine_EIC.C:          auto *detB0 = new EICG4B0Subsystem(Form("b0Truth_%d", i), i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->SuperDetector(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:      //  detB0->set_int_param("ispipe", 0); //for future pipe implementation
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_hole", cable_hole);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("length", b0Si_zLen);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_string_param("material", "G4_Si");
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("detid",i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_z", b0tr_z);  // relative to B0 magnet
+./G4_hFarFwdBeamLine_EIC.C:          detB0->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:          g4Reco->registerSubsystem(detB0);
+./G4_hFarFwdBeamLine_EIC.C:// For B0 Tracking Implementation
+./G4_hFarFwdBeamLine_EIC.C:          if (Enable::B0TRACKING){ 
+./G4_hFarFwdBeamLine_EIC.C:		  if (B0TRACKING::FastKalmanFilter)
+./G4_hFarFwdBeamLine_EIC.C:////   	 		B0TRACKING::FastKalmanFilter->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////	   		B0TRACKING::FastKalmanFilter->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////   		 	B0TRACKING::FastKalmanFilterB0Track->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////   			 B0TRACKING::FastKalmanFilterB0Track->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////	   		 B0TRACKING::B0ProjectionNames.insert(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:          auto *detB0e = new EICG4B0Subsystem(Form("b0Dead_%d", i), i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->SuperDetector("b0Dead");
+./G4_hFarFwdBeamLine_EIC.C:      //  detB0e->set_int_param("ispipe", 0); //for future pipe implementation
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("length", b0Cu_zLen);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_string_param("material", "G4_Cu");
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("detid",i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("place_z", b0tr_z +(b0Cu_zLen+b0Si_zLen)/2) ;  // relative to B0 magnet
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->SetActive(false);
+./G4_hFarFwdBeamLine_EIC.C:            detB0e->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:          g4Reco->registerSubsystem(detB0e);
+./G4_hFarFwdBeamLine_EIC.C:  if (Enable::B0ECAL) {
+./G4_hFarFwdBeamLine_EIC.C:	pipe_hole = b0Mag_zLen*cross_angle;
+./G4_hFarFwdBeamLine_EIC.C:	pipe_x = - cross_angle*b0Mag_zCent - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:	if (Enable::B0_CIRCLE_PIPE_HOLE){
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole_r = pipe_hole_r + b0Mag_zLen*cross_angle/2;
+./G4_hFarFwdBeamLine_EIC.C:	cout <<"Starting B0 ECAL "<<endl;
+./G4_hFarFwdBeamLine_EIC.C:        if (Enable::B0ECALTOWERS){				//Use this option to do physics studies
+./G4_hFarFwdBeamLine_EIC.C:	cout << hFarFwdBeamLine::B0Magnet_x<<endl;
+./G4_hFarFwdBeamLine_EIC.C:	  	ostringstream mapping_b0ecal;
+./G4_hFarFwdBeamLine_EIC.C:		mapping_b0ecal << getenv("CALIBRATIONROOT") << "/B0Ecal/mapping/B0ECAL_mapping_v2.txt"; // Specify the mapping file for B0 ECal Towers here
+./G4_hFarFwdBeamLine_EIC.C:	//	mapping_b0ecal << "B0ECAL_mapping_v2.txt"; // Specify the mapping file for B0 ECal Towers here
+./G4_hFarFwdBeamLine_EIC.C:		//cout <<"Will use B0 mapping file "<< mapping_b0ecal.str()<<endl;  
+./G4_hFarFwdBeamLine_EIC.C:	        auto *B0Ecal = new EICG4B0ECALSubsystem("B0ECAL");
+./G4_hFarFwdBeamLine_EIC.C:		B0Ecal->SetTowerMappingFile(mapping_b0ecal.str());
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->SuperDetector("B0ECAL");
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:       		B0Ecal->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->set_double_param("place_z", b0Ecal_z);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:         	B0Ecal->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          	B0Ecal->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          	B0Ecal->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:         	B0Ecal->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("length", b0Ecal_zLen);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_string_param("material", "G4_PbWO4");
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("detid",0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("global_x",hFarFwdBeamLine::B0Magnet_x);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("global_y",hFarFwdBeamLine::B0Magnet_y);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("global_z",hFarFwdBeamLine::B0Magnet_z);
+./G4_hFarFwdBeamLine_EIC.C:		B0Ecal->set_int_param("lightyield",1); 		//Note additional parameter for storing Light Yield in B0 Ecal
+./G4_hFarFwdBeamLine_EIC.C:		B0Ecal->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:        	  B0Ecal->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:       		g4Reco->registerSubsystem(B0Ecal);
+./G4_hFarFwdBeamLine_EIC.C:	else {					//Use this option to have a circular packman-shape of the B0 ECal for plots.
+./G4_hFarFwdBeamLine_EIC.C:	        auto *B0Ecal = new EICG4B0Subsystem(Form("b0Truth_%d", 2*b0DetNr), 2*b0DetNr);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->SuperDetector("b0Truth");
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:       		B0Ecal->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->set_double_param("place_z", b0Ecal_z);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:         	B0Ecal->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          	B0Ecal->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          	B0Ecal->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:         	B0Ecal->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("length", b0Ecal_zLen);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_string_param("material", "G4_PbWO4");
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("detid",2*b0DetNr);
+./G4_hFarFwdBeamLine_EIC.C:		B0Ecal->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:		  B0Ecal->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:        	g4Reco->registerSubsystem(B0Ecal);
+./G4_hFarFwdBeamLine_EIC.C:        auto *B0Ecale = new EICG4B0Subsystem(Form("b0Dead_%d", b0DetNr), b0DetNr); //B0 ECal dead layer is the same subsystem as other four dead layers
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->SuperDetector("b0Dead");
+./G4_hFarFwdBeamLine_EIC.C:      //  B0Ecale->set_int_param("ispipe", 0); //for future pipe implementation
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("place_z", b0Ecal_z + (b0Ecal_zLen + b0Cu_zLen)/2);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          B0Ecale->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          B0Ecale->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          B0Ecale->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          B0Ecale->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("length", b0Cu_zLen);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_string_param("material", "G4_Cu");
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("detid",b0DetNr+1);
+./G4_hFarFwdBeamLine_EIC.C:        //B0Ecale->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->SetActive(false);
+./G4_hFarFwdBeamLine_EIC.C:          B0Ecale->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:        g4Reco->registerSubsystem(B0Ecale);
+./G4_hFarFwdBeamLine_EIC.C:       if (Enable::B0_FULLHITPLANE) {
+./G4_hFarFwdBeamLine_EIC.C:       	    for (int i = 0; i < b0DetNr; i++)
+./G4_hFarFwdBeamLine_EIC.C:	      b0tr_z = b0tr[i] - b0Mag_zLen / 2;
+./G4_hFarFwdBeamLine_EIC.C:       	      auto *detB0 = new PHG4CylinderSubsystem(Form("b0Truth_%d", i), i);
+./G4_hFarFwdBeamLine_EIC.C:              detB0->SuperDetector("b0Truth");
+./G4_hFarFwdBeamLine_EIC.C:              //detB0->SuperDetector(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->set_double_param("radius", 0);
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->set_double_param("thickness", 20);
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->set_double_param("length", 0.1);
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->set_string_param("material", "G4_Si");
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->set_double_param("place_z", b0tr_z);  // relative to B0 magnet
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:       	      if (verbosity) detB0->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:       	      g4Reco->registerSubsystem(detB0);
+./G4_hFarFwdBeamLine_EIC.C:          if (Enable::B0TRACKING){ 
+./G4_hFarFwdBeamLine_EIC.C:		  if (B0TRACKING::FastKalmanFilter)
+./G4_hFarFwdBeamLine_EIC.C:////   	 		B0TRACKING::FastKalmanFilter->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////	   		B0TRACKING::FastKalmanFilter->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////   		 	B0TRACKING::FastKalmanFilterB0Track->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////   			 B0TRACKING::FastKalmanFilterB0Track->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////	   		 B0TRACKING::B0ProjectionNames.insert(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:        /// Fun4All default B0 planes
+./G4_hFarFwdBeamLine_EIC.C:	    for (int i = 0; i < b0DetNr; i++) {
+./G4_hFarFwdBeamLine_EIC.C:	if (Enable::B0_VAR_PIPE_HOLE){
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole = b0tr[i]*cross_angle;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x = - cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[i]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:	else if (Enable::B0_CIRCLE_PIPE_HOLE){
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole_r = pipe_hole_r + b0tr[b0DetNr-1]*cross_angle/2;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x = - cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[b0DetNr-1]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole = b0tr[b0DetNr-1]*cross_angle;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x = - cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[b0DetNr-1]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:	cout <<"Starting B0 Tracker layer "<<i+1<<endl;
+./G4_hFarFwdBeamLine_EIC.C:	  b0tr_z = b0tr[i] - b0Mag_zLen / 2;
+./G4_hFarFwdBeamLine_EIC.C:          auto *detB0 = new EICG4B0Subsystem(Form("b0Truth_%d", i), i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->SuperDetector(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:      //  detB0->set_int_param("ispipe", 0); //for future pipe implementation
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_hole", cable_hole);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("length", b0Si_zLen);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_string_param("material", "G4_Si");
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("detid",i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_z", b0tr_z);  // relative to B0 magnet
+./G4_hFarFwdBeamLine_EIC.C:	        detB0->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:	          detB0->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:	        detB0->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:	        detB0->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:	        g4Reco->registerSubsystem(detB0);
+./G4_hFarFwdBeamLine_EIC.C:          if (Enable::B0TRACKING){ 
+./G4_hFarFwdBeamLine_EIC.C:		  if (B0TRACKING::FastKalmanFilter)
+./G4_hFarFwdBeamLine_EIC.C:////   	 		B0TRACKING::FastKalmanFilter->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////	   		B0TRACKING::FastKalmanFilter->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////   		 	B0TRACKING::FastKalmanFilterB0Track->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////   			 B0TRACKING::FastKalmanFilterB0Track->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////	   		 B0TRACKING::B0ProjectionNames.insert(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:    std::cout << "B0Magnet can be mother = " << hFarFwdBeamLine::B0Magnet->CanBeMotherSubsystem() << std::endl;
+./G4_hFarFwdBeamLine_EIC.C:/*  const int b0DetNr = 4;
+./G4_hFarFwdBeamLine_EIC.C:  const double b0Mag_zCent = 610;
+./G4_hFarFwdBeamLine_EIC.C:  const double b0Mag_zLen = 120;
+./G4_hFarFwdBeamLine_EIC.C:  for (int i = 0; i < b0DetNr; i++)
+./G4_hFarFwdBeamLine_EIC.C:    auto *detB0 = new PHG4CylinderSubsystem(Form("b0Truth_%d", i), i);
+./G4_hFarFwdBeamLine_EIC.C:    detB0->SuperDetector("b0Truth");
+./G4_hFarFwdBeamLine_EIC.C:    detB0->set_double_param("radius", 0);
+./G4_hFarFwdBeamLine_EIC.C:    detB0->set_double_param("thickness", 20);
+./G4_hFarFwdBeamLine_EIC.C:    detB0->set_double_param("length", 0.1);
+./G4_hFarFwdBeamLine_EIC.C:    detB0->set_string_param("material", "G4_Si");
+./G4_hFarFwdBeamLine_EIC.C:    detB0->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:    detB0->set_double_param("place_z", b0Mag_zLen / (b0DetNr + 1) * (i - b0DetNr / 2));  
+./G4_hFarFwdBeamLine_EIC.C:    detB0->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:    detB0->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:    detB0->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:      detB0->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:    g4Reco->registerSubsystem(detB0);
+./G4_hFarFwdBeamLine_EIC.C:   // B0 implementation
+./G4_hFarFwdBeamLine_EIC.C:        double b0tr_z = 0; //Subsystem position relative to B0 magnet (for iterator)
+./G4_hFarFwdBeamLine_EIC.C:        const int b0DetNr = 4;
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Mag_zCent = 610;
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Mag_zLen = 120;
+./G4_hFarFwdBeamLine_EIC.C:	const double b0tr[4]={10,40,70,100};
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Cu_zLen = .2; //B0 dead material length
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Si_zLen = .1; //B0 Si length
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Ecal_zLen = 10; //B0 Ecal length
+./G4_hFarFwdBeamLine_EIC.C:        const double b0_radius = 23.5; //outer radius of B0-detector
+./G4_hFarFwdBeamLine_EIC.C:        const double b0_magradius = 24.5; //inner radius of B0-magnet
+./G4_hFarFwdBeamLine_EIC.C:        const double b0Ecal_z = 48;//B0 ECal position (relative to the B0-magnet)
+./G4_hFarFwdBeamLine_EIC.C:    if (Enable::B0_DISABLE_HITPLANE) {
+./G4_hFarFwdBeamLine_EIC.C://	const double b0tr[4]={10,45,80,115};
+./G4_hFarFwdBeamLine_EIC.C:	//const double b0tr[4]={0,30,60,90};
+./G4_hFarFwdBeamLine_EIC.C:	//const double b0tr[5]={0,25,50,75,100};
+./G4_hFarFwdBeamLine_EIC.C:	cout << "Realistic B0"<<endl;
+./G4_hFarFwdBeamLine_EIC.C:        for (int i = 0; i < b0DetNr; i++)
+./G4_hFarFwdBeamLine_EIC.C:	if (Enable::B0_VAR_PIPE_HOLE){
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole = b0tr[i]*cross_angle;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x =  cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[i]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:	else if (Enable::B0_CIRCLE_PIPE_HOLE){
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole_r = pipe_hole_r + b0tr[b0DetNr-1]*cross_angle/2;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x =  cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[b0DetNr-1]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole = b0tr[b0DetNr-1]*cross_angle;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x =  cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[b0DetNr-1]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:	cout <<"Starting B0 Tracker layer "<<i+1<<endl;
+./G4_hFarFwdBeamLine_EIC.C:	  b0tr_z = b0tr[i] - b0Mag_zLen / 2;
+./G4_hFarFwdBeamLine_EIC.C:          auto *detB0 = new EICG4B0Subsystem(Form("b0Truth_%d", i), i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->SuperDetector(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:      //  detB0->set_int_param("ispipe", 0); //for future pipe implementation
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_hole", cable_hole);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("length", b0Si_zLen);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_string_param("material", "G4_Si");
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("detid",i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_z", b0tr_z);  // relative to B0 magnet
+./G4_hFarFwdBeamLine_EIC.C:          detB0->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:          g4Reco->registerSubsystem(detB0);
+./G4_hFarFwdBeamLine_EIC.C:// For B0 Tracking Implementation
+./G4_hFarFwdBeamLine_EIC.C:          if (Enable::B0TRACKING){ 
+./G4_hFarFwdBeamLine_EIC.C:		  if (B0TRACKING::FastKalmanFilter)
+./G4_hFarFwdBeamLine_EIC.C:////   	 		B0TRACKING::FastKalmanFilter->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////	   		B0TRACKING::FastKalmanFilter->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////   		 	B0TRACKING::FastKalmanFilterB0Track->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////   			 B0TRACKING::FastKalmanFilterB0Track->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////	   		 B0TRACKING::B0ProjectionNames.insert(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:          auto *detB0e = new EICG4B0Subsystem(Form("b0Dead_%d", i), i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->SuperDetector("b0Dead");
+./G4_hFarFwdBeamLine_EIC.C:      //  detB0e->set_int_param("ispipe", 0); //for future pipe implementation
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("length", b0Cu_zLen);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_string_param("material", "G4_Cu");
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("detid",i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->set_double_param("place_z", b0tr_z +(b0Cu_zLen+b0Si_zLen)/2) ;  // relative to B0 magnet
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->SetActive(false);
+./G4_hFarFwdBeamLine_EIC.C:            detB0e->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:          detB0e->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:          g4Reco->registerSubsystem(detB0e);
+./G4_hFarFwdBeamLine_EIC.C:  if (Enable::B0ECAL) {
+./G4_hFarFwdBeamLine_EIC.C:	pipe_hole = b0Mag_zLen*cross_angle;
+./G4_hFarFwdBeamLine_EIC.C:	pipe_x =  cross_angle*b0Mag_zCent - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:	if (Enable::B0_CIRCLE_PIPE_HOLE){
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole_r = pipe_hole_r + b0Mag_zLen*cross_angle/2;
+./G4_hFarFwdBeamLine_EIC.C:	cout <<"Starting B0 ECAL "<<endl;
+./G4_hFarFwdBeamLine_EIC.C:        if (Enable::B0ECALTOWERS){				//Use this option to do physics studies
+./G4_hFarFwdBeamLine_EIC.C:	cout << hFarFwdBeamLine::B0Magnet_x<<endl;
+./G4_hFarFwdBeamLine_EIC.C:	  	ostringstream mapping_b0ecal;
+./G4_hFarFwdBeamLine_EIC.C:		mapping_b0ecal << getenv("CALIBRATIONROOT") << "/B0Ecal/mapping/B0ECAL_mapping_ip8_v1.txt"; // Specify the mapping file for B0 ECal Towers here
+./G4_hFarFwdBeamLine_EIC.C://		mapping_b0ecal << "B0ECAL_mapping_ip8_v1.txt"; // Specify the mapping file for B0 ECal Towers here
+./G4_hFarFwdBeamLine_EIC.C:		//cout <<"Will use B0 mapping file "<< mapping_b0ecal.str()<<endl;  
+./G4_hFarFwdBeamLine_EIC.C:	        auto *B0Ecal = new EICG4B0ECALSubsystem("B0ECAL");
+./G4_hFarFwdBeamLine_EIC.C:		B0Ecal->SetTowerMappingFile(mapping_b0ecal.str());
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->SuperDetector("B0ECAL");
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:       		B0Ecal->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->set_double_param("place_z", b0Ecal_z);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:         	B0Ecal->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          	B0Ecal->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          	B0Ecal->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:         	B0Ecal->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("length", b0Ecal_zLen);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_string_param("material", "G4_PbWO4");
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("detid",0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("global_x",hFarFwdBeamLine::B0Magnet_x);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("global_y",hFarFwdBeamLine::B0Magnet_y);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("global_z",hFarFwdBeamLine::B0Magnet_z);
+./G4_hFarFwdBeamLine_EIC.C:		B0Ecal->set_int_param("lightyield",1); 		//Note additional parameter for storing Light Yield in B0 Ecal
+./G4_hFarFwdBeamLine_EIC.C:		B0Ecal->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:        	  B0Ecal->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:       		g4Reco->registerSubsystem(B0Ecal);
+./G4_hFarFwdBeamLine_EIC.C:	else {					//Use this option to have a circular packman-shape of the B0 ECal for plots.
+./G4_hFarFwdBeamLine_EIC.C:	        auto *B0Ecal = new EICG4B0Subsystem(Form("b0Truth_%d", 2*b0DetNr), 2*b0DetNr);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->SuperDetector("b0Truth");
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:       		B0Ecal->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->set_double_param("place_z", b0Ecal_z);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:        	B0Ecal->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:         	B0Ecal->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          	B0Ecal->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          	B0Ecal->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:         	B0Ecal->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("length", b0Ecal_zLen);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_string_param("material", "G4_PbWO4");
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->set_double_param("detid",2*b0DetNr);
+./G4_hFarFwdBeamLine_EIC.C:		B0Ecal->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:		  B0Ecal->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:	        B0Ecal->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:        	g4Reco->registerSubsystem(B0Ecal);
+./G4_hFarFwdBeamLine_EIC.C:        auto *B0Ecale = new EICG4B0Subsystem(Form("b0Dead_%d", b0DetNr), b0DetNr); //B0 ECal dead layer is the same subsystem as other four dead layers
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->SuperDetector("b0Dead");
+./G4_hFarFwdBeamLine_EIC.C:      //  B0Ecale->set_int_param("ispipe", 0); //for future pipe implementation
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("place_z", b0Ecal_z + (b0Ecal_zLen + b0Cu_zLen)/2);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          B0Ecale->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          B0Ecale->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          B0Ecale->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          B0Ecale->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("length", b0Cu_zLen);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_string_param("material", "G4_Cu");
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->set_double_param("detid",b0DetNr+1);
+./G4_hFarFwdBeamLine_EIC.C:        //B0Ecale->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->SetActive(false);
+./G4_hFarFwdBeamLine_EIC.C:          B0Ecale->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:        B0Ecale->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:        g4Reco->registerSubsystem(B0Ecale);
+./G4_hFarFwdBeamLine_EIC.C:       if (Enable::B0_FULLHITPLANE) {
+./G4_hFarFwdBeamLine_EIC.C:       	    for (int i = 0; i < b0DetNr; i++)
+./G4_hFarFwdBeamLine_EIC.C:	      b0tr_z = b0tr[i] - b0Mag_zLen / 2;
+./G4_hFarFwdBeamLine_EIC.C:       	      auto *detB0 = new PHG4CylinderSubsystem(Form("b0Truth_%d", i), i);
+./G4_hFarFwdBeamLine_EIC.C:              detB0->SuperDetector("b0Truth");
+./G4_hFarFwdBeamLine_EIC.C:              //detB0->SuperDetector(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->set_double_param("radius", 0);
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->set_double_param("thickness", 20);
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->set_double_param("length", 0.1);
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->set_string_param("material", "G4_Si");
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->set_double_param("place_z", b0tr_z);  // relative to B0 magnet
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:       	      if (verbosity) detB0->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:       	      detB0->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:       	      g4Reco->registerSubsystem(detB0);
+./G4_hFarFwdBeamLine_EIC.C:          if (Enable::B0TRACKING){ 
+./G4_hFarFwdBeamLine_EIC.C:		  if (B0TRACKING::FastKalmanFilter)
+./G4_hFarFwdBeamLine_EIC.C:////   	 		B0TRACKING::FastKalmanFilter->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////	   		B0TRACKING::FastKalmanFilter->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////   		 	B0TRACKING::FastKalmanFilterB0Track->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////   			 B0TRACKING::FastKalmanFilterB0Track->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////	   		 B0TRACKING::B0ProjectionNames.insert(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:        /// Fun4All default B0 planes
+./G4_hFarFwdBeamLine_EIC.C:	    for (int i = 0; i < b0DetNr; i++) {
+./G4_hFarFwdBeamLine_EIC.C:	if (Enable::B0_VAR_PIPE_HOLE){
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole = b0tr[i]*cross_angle;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x =  cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[i]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:	else if (Enable::B0_CIRCLE_PIPE_HOLE){
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole_r = pipe_hole_r + b0tr[b0DetNr-1]*cross_angle/2;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x = - cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[b0DetNr-1]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_hole = b0tr[b0DetNr-1]*cross_angle;
+./G4_hFarFwdBeamLine_EIC.C:		pipe_x =  cross_angle*(b0Mag_zCent - b0Mag_zLen/2 + b0tr[b0DetNr-1]/2) - hFarFwdBeamLine::B0Magnet_x;
+./G4_hFarFwdBeamLine_EIC.C:	cout <<"Starting B0 Tracker layer "<<i+1<<endl;
+./G4_hFarFwdBeamLine_EIC.C:	  b0tr_z = b0tr[i] - b0Mag_zLen / 2;
+./G4_hFarFwdBeamLine_EIC.C:          auto *detB0 = new EICG4B0Subsystem(Form("b0Truth_%d", i), i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->SuperDetector(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_x", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:      //  detB0->set_int_param("ispipe", 0); //for future pipe implementation
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_hole", pipe_hole);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_hole", cable_hole);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("outer_radius", b0_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("d_radius", d_radius);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("length", b0Si_zLen);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_string_param("material", "G4_Si");
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("startAngle",start_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("spanningAngle",spanning_angle);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("detid",i);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_x", pipe_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("pipe_hole_r", pipe_hole_r);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_x", cable_x);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("cable_z", 0);
+./G4_hFarFwdBeamLine_EIC.C:          detB0->set_double_param("place_z", b0tr_z);  // relative to B0 magnet
+./G4_hFarFwdBeamLine_EIC.C:	        detB0->SetActive(true);
+./G4_hFarFwdBeamLine_EIC.C:	          detB0->Verbosity(verbosity);
+./G4_hFarFwdBeamLine_EIC.C:	        detB0->OverlapCheck(overlapCheck);
+./G4_hFarFwdBeamLine_EIC.C:	        detB0->SetMotherSubsystem(hFarFwdBeamLine::B0Magnet);
+./G4_hFarFwdBeamLine_EIC.C:	        g4Reco->registerSubsystem(detB0);
+./G4_hFarFwdBeamLine_EIC.C:          if (Enable::B0TRACKING){ 
+./G4_hFarFwdBeamLine_EIC.C:		  if (B0TRACKING::FastKalmanFilter)
+./G4_hFarFwdBeamLine_EIC.C:////   	 		B0TRACKING::FastKalmanFilter->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////	   		B0TRACKING::FastKalmanFilter->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////   		 	B0TRACKING::FastKalmanFilterB0Track->add_phg4hits(string("G4HIT_") + Form("b0Truth_%d", i) ,           //      const std::string& phg4hitsNames,
+./G4_hFarFwdBeamLine_EIC.C:////        	                             B0TrackFastSim::Vertical_Plane,  //      const DETECTOR_TYPE phg4dettype,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float radres,
+./G4_hFarFwdBeamLine_EIC.C:////                                             G4B0TRACKING::PositionResolution,           //      const float phires,
+./G4_hFarFwdBeamLine_EIC.C:////   			 B0TRACKING::FastKalmanFilterB0Track->add_zplane_state(Form("b0Truth_%d", i), b0Mag_zCent+b0tr_z);
+./G4_hFarFwdBeamLine_EIC.C:////	   		 B0TRACKING::B0ProjectionNames.insert(Form("b0Truth_%d", i));
+./G4_hFarFwdBeamLine_EIC.C:  //B0 magnet pipe
+./G4_hFarFwdBeamLine_EIC.C:  PHG4CylinderSubsystem *pipeB0 = new PHG4CylinderSubsystem("beamPipeB0", 0);
+./G4_hFarFwdBeamLine_EIC.C:  pipeB0->set_double_param("radius", 2.8);
+./G4_hFarFwdBeamLine_EIC.C:  pipeB0->set_double_param("thickness", 0.25);
+./G4_hFarFwdBeamLine_EIC.C:  pipeB0->set_double_param("length", 195);
+./G4_hFarFwdBeamLine_EIC.C:  pipeB0->set_double_param("rot_y", AngleFlip(-0.025 * TMath::RadToDeg()));
+./G4_hFarFwdBeamLine_EIC.C:  pipeB0->set_string_param("material", "G4_Al");
+./G4_hFarFwdBeamLine_EIC.C:  pipeB0->set_double_param("place_x", PosFlip(14.748));
+./G4_hFarFwdBeamLine_EIC.C:  pipeB0->set_double_param("place_y", 0);
+./G4_hFarFwdBeamLine_EIC.C:  pipeB0->set_double_param("place_z", 590);
+./G4_hFarFwdBeamLine_EIC.C:  pipeB0->SetActive(false);
+./G4_hFarFwdBeamLine_EIC.C:  g4Reco->registerSubsystem(pipeB0);
+./G4_hFarFwdBeamLine_EIC.C:  const int nSecQ = 5;  //B0apf, Q1apf, Q1bpf, Q2pf, B1pf
+./G4_hFarFwdBeamLine_EIC.C:  const string nm[nSecQ] = {"B0apf", "Q1apf", "Q1bpf", "Q2pf", "B1pf"};
+./mapping/geometry_allsi.gdml:    <position name="BARR_00x6b01410inWorldpos" x="0" y="0" z="0" unit="cm"/>
+./mapping/geometry_allsi.gdml:    <position name="BARR_20x6b024e0inWorldpos" x="0" y="0" z="0" unit="cm"/>
+./mapping/geometry_allsi.gdml:    <position name="BARR_30x6b026d0inWorldpos" x="0" y="0" z="0" unit="cm"/>
+./mapping/geometry_allsi.gdml:    <position name="FBVS_00x6b0aaf0inWorldpos" x="0" y="0" z="-121" unit="cm"/>
+./mapping/geometry_allsi.gdml:    <position name="FBVS_10x6b0ace0inWorldpos" x="0" y="0" z="-97" unit="cm"/>
+./mapping/geometry_allsi.gdml:      <physvol name="BARR_00x6b01410" copynumber="0">
+./mapping/geometry_allsi.gdml:        <positionref ref="BARR_00x6b01410inWorldpos"/>
+./mapping/geometry_allsi.gdml:      <physvol name="BARR_20x6b024e0" copynumber="0">
+./mapping/geometry_allsi.gdml:        <positionref ref="BARR_20x6b024e0inWorldpos"/>
+./mapping/geometry_allsi.gdml:      <physvol name="BARR_30x6b026d0" copynumber="0">
+./mapping/geometry_allsi.gdml:        <positionref ref="BARR_30x6b026d0inWorldpos"/>
+./mapping/geometry_allsi.gdml:      <physvol name="FBVS_00x6b0aaf0" copynumber="0">
+./mapping/geometry_allsi.gdml:        <positionref ref="FBVS_00x6b0aaf0inWorldpos"/>
+./mapping/geometry_allsi.gdml:      <physvol name="FBVS_10x6b0ace0" copynumber="0">
+./mapping/geometry_allsi.gdml:        <positionref ref="FBVS_10x6b0ace0inWorldpos"/>
+./Fun4All_G4_CORE_C.d:./Fun4All_G4_CORE_C.so: /cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/release/release_new/new.1/include/eicg4b0/EICG4B0Subsystem.h
+./Fun4All_G4_CORE_C.d:./Fun4All_G4_CORE_C.so: /cvmfs/eic.opensciencegrid.org/ecce/gcc-8.3/release/release_new/new.1/include/eicg4b0ecal/EICG4B0ECALSubsystem.h
+./eic_search.txt:./BILLTESTANALYSIS/macros/common/G4_B0Tracking_EIC.C
